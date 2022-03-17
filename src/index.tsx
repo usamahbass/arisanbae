@@ -1,3 +1,4 @@
+import { Store } from "context/context";
 import { StrictMode } from "react";
 import { render } from "react-dom";
 import { Theme } from "theme";
@@ -7,7 +8,9 @@ import reportWebVitals from "./reportWebVitals";
 render(
   <StrictMode>
     <Theme>
-      <App />
+      <Store>
+        <App />
+      </Store>
     </Theme>
   </StrictMode>,
   document.getElementById("root")

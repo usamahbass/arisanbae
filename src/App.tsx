@@ -1,5 +1,16 @@
+import { useContext } from "react";
+import { ArisanContext } from "context/context";
+import AuthenticatedPages from "views/authenticated";
+import WelcomePages from "views/welcome";
+
 const App = () => {
-  return <div>halo app</div>;
+  const { state } = useContext(ArisanContext);
+
+  if (state?.arisan) {
+    return <AuthenticatedPages />;
+  }
+
+  return <WelcomePages />;
 };
 
 export default App;
