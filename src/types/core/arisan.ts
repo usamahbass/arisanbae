@@ -3,7 +3,7 @@ import type { ArisanMemberTypes } from "./member";
 export type ArisanTypes = {
   dues: number;
   winners: number;
-  followers: number;
+  member_count: number;
   payment_term: {
     type: string;
     content: number;

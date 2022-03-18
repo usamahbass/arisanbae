@@ -1,15 +1,18 @@
-import { Store } from "context/context";
-import { StrictMode } from "react";
+import { StrictMode, Suspense } from "react";
 import { render } from "react-dom";
+import { Store } from "context/context";
 import { Theme } from "theme";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import "./i18n";
 
 render(
   <StrictMode>
     <Theme>
       <Store>
-        <App />
+        <Suspense fallback={<div>loading...</div>}>
+          <App />
+        </Suspense>
       </Store>
     </Theme>
   </StrictMode>,

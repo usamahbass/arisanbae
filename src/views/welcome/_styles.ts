@@ -4,6 +4,7 @@ export const useWelcomeStyles = makeStyles({
   header: {
     display: "flex",
     alignItems: "center",
+    justifyContent: "space-between",
   },
   logo: {
     width: 20,

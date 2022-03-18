@@ -1,0 +1,10 @@
+{
+  "welcome": {
+    "title": "Welcome to Arisan !",
+    "description": "Applications to help those of you who are complicated to take notes about social gathering. Create a member and do the lottery anywhere.",
+    "impor_button": "File Import",
+    "manual_button": "Don't have files? Create manual",
+    "footer_caption": "Insya Allah This social gathering application has followed the allowed rules, please read more",
+    "footer_caption_link": "here"
+  }
+}
