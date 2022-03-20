@@ -9,8 +9,16 @@ export const ArisanContext = createContext<{
   dispatch: () => null,
 });
 
+const checkLocalStorage = () => {
+  if (localStorage.getItem("arisan") !== null) {
+    return JSON.parse(localStorage.getItem("arisan") || "");
+  }
+
+  return initialState;
+};
+
 export const Store: FC = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, checkLocalStorage());
 
   useEffect(() => {
     localStorage.setItem("arisan", JSON.stringify(state));

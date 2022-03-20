@@ -1,6 +1,8 @@
+import type { AdministratorTypes } from "./administrator";
 import type { ArisanMemberTypes } from "./member";
 
 export type ArisanTypes = {
+  name: string;
   dues: number;
   winners: number;
   member_count: number;
@@ -8,9 +10,6 @@ export type ArisanTypes = {
     type: string;
     content: number;
   };
-  administrator: {
-    username: string;
-    password: string;
-  };
+  administrator: AdministratorTypes;
   members: Array<ArisanMemberTypes>;
 };

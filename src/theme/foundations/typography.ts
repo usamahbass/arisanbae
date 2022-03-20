@@ -21,4 +21,11 @@ export const typography = {
       fontFamily: 400,
     },
   },
+  p: {
+    fontFamily: ["Poppins", "serif"].join(","),
+    fontWeight: 400,
+    "@media (max-width: 678px)": {
+      fontFamily: 400,
+    },
+  },
 };

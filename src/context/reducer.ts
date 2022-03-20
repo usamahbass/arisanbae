@@ -3,6 +3,7 @@ import type { ArisanTypes } from "types/core/arisan";
 import { TypesReducer } from "./type";
 
 export type initialStateType = {
+  auth: boolean;
   arisan: ArisanTypes | null;
   language: string;
   currentRoutes: null | string;
@@ -11,6 +12,7 @@ export type initialStateType = {
 };
 
 export const initialState = {
+  auth: false,
   arisan: null,
   language: "ID",
   currentRoutes: null,
@@ -25,6 +27,8 @@ export const reducer: Reducer<initialStateType | any, ReducerActionType> = (
   action
 ) => {
   switch (action.type) {
+    case TypesReducer.SET_ARISAN_NAME:
+      return { ...state, arisan: { ...state.arisan, name: action.payload } };
     case TypesReducer.SET_ADMINISTRATOR_DATA:
       return {
         ...state,

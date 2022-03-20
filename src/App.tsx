@@ -6,7 +6,7 @@ import WelcomePages from "views/welcome";
 const App = () => {
   const { state } = useContext(ArisanContext);
 
-  if (state?.arisan) {
+  if (state?.auth) {
     return <AuthenticatedPages />;
   }
 

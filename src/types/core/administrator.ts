@@ -1,4 +1,5 @@
 export type AdministratorTypes = {
-  username: string;
-  password: string;
+  manager: string | any;
+  pin?: number | any;
+  wages: number | any;
 };

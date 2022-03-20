@@ -6,7 +6,10 @@ i18n
   .use(i18nextHttpBackend)
   .use(initReactI18next)
   .init({
-    lng: JSON.parse(localStorage.getItem("arisan") || "")?.language || "id",
+    lng:
+      localStorage.getItem("arisan") !== null
+        ? JSON.parse(localStorage.getItem("arisan") || "")?.language
+        : "id",
     fallbackLng: "id",
 
     interpolation: {
