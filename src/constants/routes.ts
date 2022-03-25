@@ -4,6 +4,7 @@ export const ROUTES_NAME = {
   REGISTER_IMPOR: "register_impor",
   CREATE_PROFILE_ADMIN: "create_profile_admin",
   CREATE_PIN_ADMIN: "create_admin_pin",
+  ABOUT_ARISAN: "ABOUT_ARISAN",
   DUES: "dues",
   MEMBER_COUNT: "member_count",
   PAYMENT_TERM: "payment_term",

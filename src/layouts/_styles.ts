@@ -2,7 +2,7 @@ import { makeStyles } from "@mui/styles";
 
 export const useLayoutStyles = makeStyles(() => ({
   container: {
-    maxWidth: "380px",
+    maxWidth: "480px",
     width: "100%",
     position: "relative",
     margin: "0 auto",

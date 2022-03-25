@@ -20,7 +20,7 @@ export const initialState = {
   nextRoutes: null,
 };
 
-type ReducerActionType = { type: string; payload: {} | string };
+type ReducerActionType = { type: string; payload: {} | any };
 
 export const reducer: Reducer<initialStateType | any, ReducerActionType> = (
   state,
@@ -32,7 +32,10 @@ export const reducer: Reducer<initialStateType | any, ReducerActionType> = (
     case TypesReducer.SET_ADMINISTRATOR_DATA:
       return {
         ...state,
-        arisan: { ...state.arisan, administrator: action.payload },
+        arisan: {
+          ...state.arisan,
+          administrator: { ...state.arisan.administrator, ...action.payload },
+        },
       };
     case TypesReducer.CHANGE_LANGUAGE:
       return { ...state, language: action.payload };
@@ -42,6 +45,8 @@ export const reducer: Reducer<initialStateType | any, ReducerActionType> = (
       return { ...state, previousRoutes: action.payload };
     case TypesReducer.CHANGE_NEXT_ROUTES:
       return { ...state, nextRoutes: action.payload };
+    case TypesReducer.SET_ARISAN_DATA:
+      return { ...state, arisan: { ...state.arisan, ...action.payload } };
     default:
       return state;
   }
