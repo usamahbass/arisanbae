@@ -47,6 +47,8 @@ export const reducer: Reducer<initialStateType | any, ReducerActionType> = (
       return { ...state, nextRoutes: action.payload };
     case TypesReducer.SET_ARISAN_DATA:
       return { ...state, arisan: { ...state.arisan, ...action.payload } };
+    case TypesReducer.SET_ARISAN_MEMBERS:
+      return { ...state, arisan: { ...state.arisan, members: action.payload } };
     default:
       return state;
   }

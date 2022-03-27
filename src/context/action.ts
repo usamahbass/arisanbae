@@ -1,5 +1,6 @@
 import type { AdministratorTypes } from "types/core/administrator";
-import { ArisanTypes } from "types/core/arisan";
+import type { ArisanTypes } from "types/core/arisan";
+import type { ArisanMemberTypes } from "types/core/member";
 import { TypesReducer } from "./type";
 
 export const setArisanName = (arisanName: string) => ({
@@ -35,4 +36,9 @@ export const changeNextRoutes = (nextRoutes: string | any) => ({
 export const setArisanData = (arisanData: ArisanTypes | any) => ({
   type: TypesReducer.SET_ARISAN_DATA,
   payload: arisanData,
+});
+
+export const setArisanMembers = (arisanMember: ArisanMemberTypes) => ({
+  type: TypesReducer.SET_ARISAN_MEMBERS,
+  payload: arisanMember,
 });

@@ -5,6 +5,7 @@ import { Theme } from "theme";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./i18n";
+import "./css/index.css";
 
 render(
   <StrictMode>

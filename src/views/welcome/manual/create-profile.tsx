@@ -11,6 +11,7 @@ import {
   FormControl,
   InputLabel,
 } from "@mui/material";
+import Helmet from "react-helmet";
 import {
   changeCurrentRoutes,
   changePreviousRoutes,
@@ -21,13 +22,13 @@ import { useSlide } from "hooks/useSlide";
 import { ArisanContext } from "context/context";
 import { ROUTES_NAME } from "constants/routes";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { createPaymentTermCount } from "helper/createPaymentTermCount";
 import type { AdministratorTypes } from "types/core/administrator";
+import type { ArisanTypes } from "types/core/arisan";
 import { convertPriceToInt } from "helper/convertPriceToInt";
 import ArisanLayout from "layouts";
 import PriceInput from "components/price-input";
 import HeaderBack from "layouts/header-back";
-import { ArisanTypes } from "types/core/arisan";
-import { createPaymentTermCount } from "helper/createPaymentTermCount";
 
 const CreateProfile = () => {
   const { dispatch, state } = useContext(ArisanContext);
@@ -61,7 +62,7 @@ const CreateProfile = () => {
 
     dispatch(setArisanData(arisanData));
     dispatch(setAdministratorData(administratorProfile));
-    dispatch(changeCurrentRoutes(ROUTES_NAME.CREATE_PIN_ADMIN));
+    dispatch(changeCurrentRoutes(ROUTES_NAME.ENTRY_MEMBER));
     dispatch(changePreviousRoutes(state?.currentRoutes));
   };
 
@@ -71,12 +72,18 @@ const CreateProfile = () => {
         setValue("arisan_name", state?.arisan?.name);
         setValue("manager", state?.arisan?.administrator?.manager);
         setValue("wages", state?.arisan?.administrator?.wages);
+        setValue("dues", state?.arisan?.dues);
+        setValue("member_count", state?.arisan?.member_count);
+        setValue("payment_term.type", state?.arisan?.payment_term?.type);
+        setValue("payment_term.content", state?.arisan?.payment_term?.content);
+        setValue("winners_count", state?.arisan?.winners_count);
       }, 300);
     }
   }, [state?.arisan]);
 
   return (
     <ArisanLayout isScreen>
+      <Helmet title="Daftar - Arisan" />
       <Slide in={isSlide} direction="left">
         <Box>
           <HeaderBack />
@@ -93,7 +100,7 @@ const CreateProfile = () => {
               autoComplete="off"
               onSubmit={handleSubmit(handleCreateProfile)}
             >
-              <Stack height="380px" overflow="auto" spacing={3}>
+              <Stack height="calc(100vh - 330px)" overflow="auto" spacing={3}>
                 <Controller
                   name="arisan_name"
                   control={control}
@@ -145,7 +152,6 @@ const CreateProfile = () => {
                       variant="standard"
                       value={value}
                       sx={{ fontWeight: 400 }}
-                      defaultValue={state?.arisan?.administrator?.wages}
                       onChange={({ target: { value: valueInput } }) =>
                         onChange(valueInput)
                       }
@@ -168,7 +174,6 @@ const CreateProfile = () => {
                       variant="standard"
                       value={value}
                       sx={{ fontWeight: 400 }}
-                      defaultValue={state?.arisan?.dues}
                       onChange={({ target: { value: valueInput } }) =>
                         onChange(valueInput)
                       }

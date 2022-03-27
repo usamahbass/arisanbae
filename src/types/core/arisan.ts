@@ -5,7 +5,7 @@ export type ArisanTypes = {
   name: string;
   dues: number;
   winners_count: number;
-  member_count: number;
+  member_count: number | any;
   payment_term: {
     type: string;
     content: number;

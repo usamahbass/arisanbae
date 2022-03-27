@@ -27,7 +27,7 @@ const CreatePinPages = () => {
   const handleCreatePin = (values: any) => {
     dispatch(setAdministratorData(values));
     dispatch(changePreviousRoutes(state?.currentRoutes));
-    dispatch(changeCurrentRoutes(ROUTES_NAME.DUES));
+    // dispatch(changeCurrentRoutes(ROUTES_NAME.DUES));
   };
 
   return (
