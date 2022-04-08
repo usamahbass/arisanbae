@@ -54,7 +54,7 @@ const CreateProfile = () => {
 
     const arisanData: ArisanTypes | any = {
       name: values?.arisan_name,
-      dues: values?.dues,
+      dues: convertPriceToInt(values?.dues),
       winners_count: values?.winners_count,
       payment_term: values?.payment_term,
       member_count: values?.member_count,
@@ -65,6 +65,11 @@ const CreateProfile = () => {
     dispatch(changeCurrentRoutes(ROUTES_NAME.ENTRY_MEMBER));
     dispatch(changePreviousRoutes(state?.currentRoutes));
   };
+
+  useEffect(() => {
+    setValue("payment_term.type", "month");
+    setValue("payment_term.content", "1");
+  }, []);
 
   useEffect(() => {
     if (state?.arisan) {

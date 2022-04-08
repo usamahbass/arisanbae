@@ -1,3 +1,7 @@
+input[type="number"] {
+  appearance: none !important;
+}
+
 .adortment-select {
   width: auto !important;
 }

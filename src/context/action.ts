@@ -42,3 +42,8 @@ export const setArisanMembers = (arisanMember: ArisanMemberTypes) => ({
   type: TypesReducer.SET_ARISAN_MEMBERS,
   payload: arisanMember,
 });
+
+export const setAuthentication = (auth: boolean) => ({
+  type: TypesReducer.SET_AUTHENTICATION,
+  payload: auth,
+});

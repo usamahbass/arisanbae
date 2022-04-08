@@ -1,10 +1,10 @@
 import { Reducer } from "react";
-import type { ArisanTypes } from "types/core/arisan";
 import { TypesReducer } from "./type";
+import type { ArisanTypes } from "types/core/arisan";
 
 export type initialStateType = {
   auth: boolean;
-  arisan: ArisanTypes | null;
+  arisan: ArisanTypes | any;
   language: string;
   currentRoutes: null | string;
   previousRoutes: null | string;
@@ -49,6 +49,8 @@ export const reducer: Reducer<initialStateType | any, ReducerActionType> = (
       return { ...state, arisan: { ...state.arisan, ...action.payload } };
     case TypesReducer.SET_ARISAN_MEMBERS:
       return { ...state, arisan: { ...state.arisan, members: action.payload } };
+    case TypesReducer.SET_AUTHENTICATION:
+      return { ...state, auth: action.payload };
     default:
       return state;
   }

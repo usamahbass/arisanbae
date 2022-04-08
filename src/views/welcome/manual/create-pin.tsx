@@ -6,13 +6,11 @@ import ReactCodeInput from "react-code-input";
 import { ArisanContext } from "context/context";
 import { useSlide } from "hooks/useSlide";
 import {
-  changeCurrentRoutes,
   setAdministratorData,
   changePreviousRoutes,
+  setAuthentication,
 } from "context/action";
-import { ROUTES_NAME } from "constants/routes";
 import ArisanLayout from "layouts";
-import HeaderBack from "layouts/header-back";
 
 const CreatePinPages = () => {
   const isSlide = useSlide();
@@ -25,17 +23,15 @@ const CreatePinPages = () => {
   const watchPin = watch("pin", null);
 
   const handleCreatePin = (values: any) => {
+    dispatch(setAuthentication(true));
     dispatch(setAdministratorData(values));
     dispatch(changePreviousRoutes(state?.currentRoutes));
-    // dispatch(changeCurrentRoutes(ROUTES_NAME.DUES));
   };
 
   return (
     <ArisanLayout isScreen>
       <Slide direction="left" in={isSlide}>
         <Box>
-          <HeaderBack />
-
           <Stack ml=".75rem" spacing={4}>
             <Stack spacing={1} mt="1rem">
               <Typography fontSize="1.5rem">Buat Pin</Typography>
