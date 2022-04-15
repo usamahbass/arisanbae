@@ -7,6 +7,10 @@ export const typography = {
     fontFamily: ["Poppins", "serif"].join(","),
     fontWeight: 400,
   },
+  subtitle2: {
+    fontFamily: ["Poppins", "serif"].join(","),
+    fontWeight: 400,
+  },
   body1: {
     fontFamily: ["Poppins", "serif"].join(","),
     fontWeight: 600,
@@ -27,5 +31,29 @@ export const typography = {
     "@media (max-width: 678px)": {
       fontFamily: 400,
     },
+  },
+  h1: {
+    fontFamily: ["Poppins", "serif"].join(","),
+    fontWeight: 400,
+  },
+  h2: {
+    fontFamily: ["Poppins", "serif"].join(","),
+    fontWeight: 400,
+  },
+  h3: {
+    fontFamily: ["Poppins", "serif"].join(","),
+    fontWeight: 400,
+  },
+  h4: {
+    fontFamily: ["Poppins", "serif"].join(","),
+    fontWeight: 400,
+  },
+  h5: {
+    fontFamily: ["Poppins", "serif"].join(","),
+    fontWeight: 400,
+  },
+  h6: {
+    fontFamily: ["Poppins", "serif"].join(","),
+    fontWeight: 400,
   },
 };

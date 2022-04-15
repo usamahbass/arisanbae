@@ -5,7 +5,14 @@ export const overrides: Components = {
     defaultProps: {
       style: {
         boxShadow: "none",
-        fontFamily: `"Poppins", serif`
+        fontFamily: `"Poppins", serif`,
+      },
+    },
+  },
+  MuiTypography: {
+    defaultProps: {
+      style: {
+        fontFamily: `"Poppins", serif`,
       },
     },
   },

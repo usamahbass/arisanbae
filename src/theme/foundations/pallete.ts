@@ -14,4 +14,21 @@ export const pallete = {
     dark: "#932F00",
     light: "#FFD999",
   },
+  error: {
+    light: "#FFE7D9",
+    main: "#FF4842",
+    dark: "#7A0C2E",
+    contrastText: "#fff",
+  },
+  success: {
+    light: "#E9FCD4",
+    main: "#54D62C",
+    dark: "#08660D",
+  },
+  info: {
+    light: "#D0F2FF",
+    main: "#1890FF",
+    dark: "#04297A",
+    contrastText: "#fff",
+  },
 };

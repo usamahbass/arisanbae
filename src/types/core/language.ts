@@ -3,4 +3,5 @@ export type LANGUAGE_TYPE = {
   name: string;
   color: string;
   phone: string;
+  region: string;
 };

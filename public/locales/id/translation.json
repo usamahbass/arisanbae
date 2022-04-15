@@ -1,10 +1,21 @@
 {
   "welcome": {
-    "title": "Selamat datang di Arisan !",
+    "title": "Selamat datang di ArisanWae !",
     "description": "Aplikasi untuk bantuin kamu yang ribet catat catat mengenai arisan. Buat member dan lakukan undian dimana pun.",
     "impor_button": "Impor File",
     "manual_button": "Ga punya file? Buat manual",
     "footer_caption": "Insya Allah aplikasi arisan ini sudah mengikuti kaidah yang dibolehkan, selengkapnya silakan baca",
     "footer_caption_link": "disini"
+  },
+  "create_profile_admin": {
+    "title": "Buat Arisan Baru",
+    "description": "Lengkapi data arisan kamu di bawah ini, ya",
+    "input_one": "Nama Arisan",
+    "input_two": "Pengelola",
+    "input_three": "Upah Pengelola",
+    "input_four": "Iuran Arisan",
+    "input_five": "Tipe jangka iuran",
+    "input_six": "Jangka iuran",
+    "input_seven": "Jumlah orang yang dapat"
   }
 }

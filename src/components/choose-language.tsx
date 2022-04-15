@@ -7,6 +7,7 @@ import {
   Avatar,
   Radio,
   IconButton,
+  RadioGroup,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import CloseIcon from "@mui/icons-material/Close";
@@ -41,43 +42,43 @@ const ChooseLanguage = ({ isOpen, onClose, onOpen }: ChooseLanguageProps) => {
             <Typography variant="body2">Mau pakai bahasa apa?</Typography>
           </Stack>
 
-          {LANGUAGE.map((language, idx) => (
-            <Box
-              key={`${language.alias}-${idx + 1}`}
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-              mb="1rem"
-            >
-              <Stack direction="row" alignItems="center" spacing={2}>
-                <Avatar
-                  sx={{
-                    bgcolor: language.color,
-                    width: 30,
-                    height: 30,
-                    fontSize: "1rem",
-                    display: "flex",
-                    margin: "0 auto",
-                    fontFamily: `'Poppins', serif`,
-                  }}
-                >
-                  {language.alias.toUpperCase()}
-                </Avatar>
+          <RadioGroup
+            value={state.language.toLowerCase()}
+            onChange={(e: any) => {
+              i18n.changeLanguage(e.target.value);
+              dispatch(changeLanguage(e.target.value));
+            }}
+          >
+            {LANGUAGE.map((language, idx) => (
+              <Box
+                key={`${language.alias}-${idx + 1}`}
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                mb="1rem"
+              >
+                <Stack direction="row" alignItems="center" spacing={2}>
+                  <Avatar
+                    sx={{
+                      bgcolor: language.color,
+                      width: 30,
+                      height: 30,
+                      fontSize: "1rem",
+                      display: "flex",
+                      margin: "0 auto",
+                      fontFamily: `'Poppins', serif`,
+                    }}
+                  >
+                    {language.alias.toUpperCase()}
+                  </Avatar>
 
-                <Typography variant="body2">{language.name}</Typography>
-              </Stack>
+                  <Typography variant="body2">{language.name}</Typography>
+                </Stack>
 
-              <Radio
-                value={language.alias}
-                checked={state.language === language.alias}
-                defaultChecked={state.language === language.alias}
-                onChange={(e: any) => {
-                  i18n.changeLanguage(e.target.value);
-                  dispatch(changeLanguage(e.target.value));
-                }}
-              />
-            </Box>
-          ))}
+                <Radio value={language.alias} />
+              </Box>
+            ))}
+          </RadioGroup>
         </Stack>
       </SwipeableDrawer>
     </>

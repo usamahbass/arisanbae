@@ -4,7 +4,7 @@ import type { ArisanTypes } from "types/core/arisan";
 
 export type initialStateType = {
   auth: boolean;
-  arisan: ArisanTypes | any;
+  arisan: ArisanTypes & any;
   language: string;
   currentRoutes: null | string;
   previousRoutes: null | string;
@@ -51,6 +51,40 @@ export const reducer: Reducer<initialStateType | any, ReducerActionType> = (
       return { ...state, arisan: { ...state.arisan, members: action.payload } };
     case TypesReducer.SET_AUTHENTICATION:
       return { ...state, auth: action.payload };
+    case TypesReducer.SET_ARISAN_SCHEDULE:
+      return {
+        ...state,
+        arisan: { ...state.arisan, schedule: action.payload },
+      };
+    case TypesReducer.REMOVE_ARISAN_DATA:
+      return { ...state, arisan: null };
+    case TypesReducer.SET_ARISAN_KE:
+      return {
+        ...state,
+        arisan: { ...state.arisan, arisan_ke: action.payload },
+      };
+    case TypesReducer.SET_ALREADY_PAID:
+      return {
+        ...state,
+        arisan: {
+          ...state.arisan,
+          schedule: {
+            ...state.arisan.schedule,
+            [state.arisan.arisan_ke ?? 1]: action.payload,
+          },
+        },
+      };
+    case TypesReducer.SET_ARISAN_KE_HAS_BEEN_VOTE:
+      return {
+        ...state,
+        arisan: {
+          ...state.arisan,
+          arisanKeHasBeenVote: [
+            ...state.arisan.arisanKeHasBeenVote,
+            action.payload,
+          ],
+        },
+      };
     default:
       return state;
   }

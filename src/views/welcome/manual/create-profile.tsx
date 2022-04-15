@@ -95,7 +95,7 @@ const CreateProfile = () => {
 
           <Stack ml=".75rem" spacing={4}>
             <Stack spacing={1} mt="1rem">
-              <Typography fontSize="1.5rem">Daftar</Typography>
+              <Typography fontSize="1.5rem">Buat Arisan Baru</Typography>
               <Typography variant="body2">
                 Lengkapi data arisan kamu di bawah ini, ya
               </Typography>

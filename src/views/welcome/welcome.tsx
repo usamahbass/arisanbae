@@ -17,6 +17,7 @@ import { changeCurrentRoutes, changePreviousRoutes } from "context/action";
 import { ROUTES_NAME } from "constants/routes";
 import { useSlide } from "hooks/useSlide";
 import ArisanLayout from "layouts";
+import PageTitle from "components/page-title";
 import LogoArisan from "assets/png/icon.png";
 import IlustrationWelcome from "assets/svg/welcome.svg";
 import ChooseLanguage from "components/choose-language";
@@ -33,12 +34,13 @@ const WelcomePages = () => {
 
   return (
     <ArisanLayout>
+      <PageTitle title={t("welcome.title")} />
       <Slide direction="left" in={isSlide}>
         <Box height="100vh">
           <Box className={classes.header}>
             <Box display="flex" alignItems="center">
               <img className={classes.logo} src={LogoArisan} alt="logoarisan" />
-              <Typography className={classes.logoName}>Arisan</Typography>
+              <Typography className={classes.logoName}>ArisanWae</Typography>
             </Box>
 
             <Box>

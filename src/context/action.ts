@@ -1,6 +1,7 @@
 import type { AdministratorTypes } from "types/core/administrator";
 import type { ArisanTypes } from "types/core/arisan";
 import type { ArisanMemberTypes } from "types/core/member";
+import { ArisanSchedule } from "types/core/schedule";
 import { TypesReducer } from "./type";
 
 export const setArisanName = (arisanName: string) => ({
@@ -46,4 +47,23 @@ export const setArisanMembers = (arisanMember: ArisanMemberTypes) => ({
 export const setAuthentication = (auth: boolean) => ({
   type: TypesReducer.SET_AUTHENTICATION,
   payload: auth,
+});
+
+export const setArisanSchedule = (arisanSchedule: any) => ({
+  type: TypesReducer.SET_ARISAN_SCHEDULE,
+  payload: arisanSchedule,
+});
+
+export const removeArisanData = () => ({
+  type: TypesReducer.REMOVE_ARISAN_DATA,
+});
+
+export const setArisanKe = (arisanKe: number) => ({
+  type: TypesReducer.SET_ARISAN_KE,
+  payload: arisanKe,
+});
+
+export const setAlreadyPaid = (newSchedule: ArisanSchedule[]) => ({
+  type: TypesReducer.SET_ALREADY_PAID,
+  payload: newSchedule,
 });

@@ -15,7 +15,13 @@ import {
 import { TransitionProps } from "@mui/material/transitions";
 import CloseIcon from "@mui/icons-material/Close";
 import { ArisanContext } from "context/context";
-import { changeLanguage } from 'context/action';
+import {
+  changeCurrentRoutes,
+  changeLanguage,
+  changePreviousRoutes,
+  removeArisanData,
+  setAuthentication,
+} from "context/action";
 import { LANGUAGE } from "constants/language";
 
 type SettingViewProps = {
@@ -34,6 +40,13 @@ const TransitionSlide = forwardRef(function Transition(
 
 const SettingViews = ({ isOpen, handleClose }: SettingViewProps) => {
   const { state, dispatch } = useContext(ArisanContext);
+
+  const handleLogout = () => {
+    dispatch(removeArisanData());
+    dispatch(setAuthentication(false));
+    dispatch(changeCurrentRoutes(null));
+    dispatch(changePreviousRoutes(null));
+  };
 
   return (
     <Dialog
@@ -89,6 +102,15 @@ const SettingViews = ({ isOpen, handleClose }: SettingViewProps) => {
             ))}
           </NativeSelect>
         </ListItem>
+        <Divider />
+
+        <ListItem button onClick={handleLogout}>
+          <ListItemText
+            primary="Keluar"
+            secondary="Aksi ini akan menghapus semua data arisan, silakan export data sebelum keluar."
+          />
+        </ListItem>
+
         <Divider />
       </List>
     </Dialog>

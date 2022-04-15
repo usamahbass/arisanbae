@@ -16,8 +16,10 @@ import {
   setArisanMembers,
   changeCurrentRoutes,
   changePreviousRoutes,
+  setArisanSchedule,
 } from "context/action";
 import { ROUTES_NAME } from "constants/routes";
+import { createArisanKeByCount } from "helper/createArisanKeByCount";
 import type { ArisanMemberTypes } from "types/core/member";
 import ArisanLayout from "layouts";
 import Ribbon from "components/ribbon";
@@ -51,7 +53,13 @@ const EntryMemberPages = () => {
       })
     );
 
+    const arisanSchedule = createArisanKeByCount(
+      parseInt(state?.arisan?.member_count),
+      members
+    );
+
     dispatch(setArisanMembers(members));
+    dispatch(setArisanSchedule(arisanSchedule));
     dispatch(changePreviousRoutes(state?.currentRoutes));
     dispatch(changeCurrentRoutes(ROUTES_NAME.GIFT_RESULT));
   };
