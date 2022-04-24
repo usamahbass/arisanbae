@@ -22,10 +22,11 @@ import {
 } from "@mui/material";
 import DaduIcon from "@mui/icons-material/Casino";
 import { ArisanContext } from "context/context";
-import { setAlreadyPaid, setArisanKe } from "context/action";
-import type { ArisanMemberTypes } from "types/core/member";
-import type { Schedule } from "types/core/schedule";
+import { setAlreadyPaid, setArisanHistory, setArisanKe } from "context/action";
 import EmptyState from "components/empty-state";
+import type { Schedule } from "types/core/schedule";
+import type { ArisanHistoryType } from "types/core/history";
+import type { ArisanMemberTypes } from "types/core/member";
 
 type TableProps = {
   handleVoteWinner: Function | any;
@@ -94,19 +95,6 @@ const Table = ({ handleVoteWinner }: TableProps) => {
     }, 500);
   }, []);
 
-  // useEffect(() => {
-  //   const memberCount = parseInt(state?.arisan?.member_count);
-  //   const currentSchedule = state?.arisan?.schedule?.[state?.arisan?.arisan_ke];
-
-  //   const isPaidInCurrentSchedule = currentSchedule?.filter(
-  //     (schedule: Schedule) => !schedule.paid
-  //   );
-
-  //   if (isPaidInCurrentSchedule <= 0 && memberCount > 1) {
-  //     dispatch(setArisanKe(state?.arisan?.arisan_ke + 1));
-  //   }
-  // }, [state?.arisan?.schedule]);
-
   const isHasBeenVote: boolean = state?.arisan?.arisanKeHasBeenVote?.includes(
     state?.arisan?.arisan_ke
   );
@@ -167,9 +155,19 @@ const Table = ({ handleVoteWinner }: TableProps) => {
             hideFooterSelectedRowCount
             selectionModel={isPaidMember}
             onSelectionModelChange={(selected: GridSelectionModel) => {
+              let historyPayload: ArisanHistoryType[] = [];
+
               const filterWinnersMembers = isSchedule?.map(
                 (member: Schedule) => {
                   if (selected.includes(member.id)) {
+                    historyPayload = [
+                      ...historyPayload,
+                      {
+                        name: `${member.name} telah membayar arisan`,
+                        date: new Date(),
+                      },
+                    ];
+
                     return {
                       ...member,
                       paid: true,
@@ -184,6 +182,9 @@ const Table = ({ handleVoteWinner }: TableProps) => {
               );
 
               dispatch(setAlreadyPaid(filterWinnersMembers));
+              historyPayload.map((history) =>
+                dispatch(setArisanHistory(history))
+              );
             }}
             checkboxSelection={!hideCheckboxTable}
             onCellEditStop={(

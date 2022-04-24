@@ -6,6 +6,7 @@ import {
   Grid,
   Stack,
   Tooltip,
+  Slide,
 } from "@mui/material";
 import Helmet from "react-helmet";
 import SettingIcon from "@mui/icons-material/Settings";
@@ -28,6 +29,7 @@ import TableView from "./table";
 import ModalWinner from "components/modal-winner";
 import ConfirmDialog from "components/confirm-dialog";
 import LoadingOverlay from "components/loading-overlay";
+import History from "./history";
 
 const AuthenticatedPages = () => {
   const { state, dispatch } = useContext(ArisanContext);
@@ -141,21 +143,33 @@ const AuthenticatedPages = () => {
           </Tooltip>
         </Box>
 
-        {valueNav === 0 ? (
-          <Stack spacing={5}>
-            <Grid container mt={3} spacing={3}>
-              <Grid item xs={6} sm={6}>
-                <CardWinner />
-              </Grid>
+        <Slide direction="left" in={valueNav === 0}>
+          <Box display={valueNav === 0 ? "block" : "none"}>
+            <Stack spacing={5}>
+              <Grid container mt={3} spacing={3}>
+                <Grid item xs={6} sm={6}>
+                  <CardWinner />
+                </Grid>
 
-              <Grid item xs={6} sm={6}>
-                <CardMembers />
+                <Grid item xs={6} sm={6}>
+                  <CardMembers />
+                </Grid>
               </Grid>
-            </Grid>
-          </Stack>
-        ) : (
-          <TableView handleVoteWinner={() => setOpenModalConfirmVote(true)} />
-        )}
+            </Stack>
+          </Box>
+        </Slide>
+
+        <Slide direction="left" in={valueNav === 1}>
+          <Box display={valueNav === 1 ? "block " : "none"}>
+            <TableView handleVoteWinner={() => setOpenModalConfirmVote(true)} />
+          </Box>
+        </Slide>
+
+        <Slide direction="left" in={valueNav === 2}>
+          <Box display={valueNav === 2 ? "block " : "none"}>
+            <History />
+          </Box>
+        </Slide>
       </Box>
 
       <SettingViews

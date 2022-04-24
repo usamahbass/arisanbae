@@ -5,7 +5,6 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  Slide,
   List,
   ListItem,
   ListItemText,
@@ -19,9 +18,11 @@ import {
   changeLanguage,
   changePreviousRoutes,
   removeArisanData,
+  setArisanHistory,
   setAuthentication,
 } from "context/action";
 import { LANGUAGE } from "constants/language";
+import type { ArisanHistoryType } from "types/core/history";
 import TransitionSlide from "components/slide-transition";
 
 type SettingViewProps = {
@@ -84,7 +85,19 @@ const SettingViews = ({ isOpen, handleClose }: SettingViewProps) => {
               name: "language",
               id: "setting-language",
             }}
-            onChange={(event) => dispatch(changeLanguage(event.target.value))}
+            onChange={(event) => {
+              dispatch(changeLanguage(event.target.value));
+
+              const payloadHistory: ArisanHistoryType = {
+                name: `Bahasa telah diubah ke ${
+                  LANGUAGE.find((lang) => lang.alias === event.target.value)
+                    ?.name
+                }`,
+                date: new Date(),
+              };
+
+              dispatch(setArisanHistory(payloadHistory));
+            }}
           >
             {LANGUAGE.map((lang) => (
               <option key={lang.alias} value={lang.alias}>
