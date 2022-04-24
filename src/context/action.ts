@@ -67,3 +67,8 @@ export const setAlreadyPaid = (newSchedule: ArisanSchedule[]) => ({
   type: TypesReducer.SET_ALREADY_PAID,
   payload: newSchedule,
 });
+
+export const setArisanKeHasBeenVote = (arisanKe: number) => ({
+  type: TypesReducer.SET_ARISAN_KE_HAS_BEEN_VOTE,
+  payload: arisanKe,
+});

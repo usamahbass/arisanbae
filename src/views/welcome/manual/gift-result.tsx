@@ -78,7 +78,7 @@ const GiftResult = () => {
                 title="Jangka Pembayaran"
                 result={changePaymentTerm(state?.arisan?.payment_term)}
               />
-              <StackResult title="Iuran Arisan" result={state?.arisan?.dues} />
+              <StackResult title="Iuran Arisan" result={toRupiah(state?.arisan?.dues)} />
               <StackResult
                 title="Biaya Pengelola"
                 result={toRupiah(state?.arisan?.administrator?.wages)}

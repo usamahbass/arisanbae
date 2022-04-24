@@ -201,7 +201,10 @@ const CreateProfile = () => {
                       label="Jumlah orang yang ikut"
                       variant="standard"
                       value={value}
-                      sx={{ fontWeight: 400, color: "#333" }}
+                      sx={{
+                        fontWeight: 400,
+                        color: "#333",
+                      }}
                       defaultValue={state?.arisan?.member_count}
                       onChange={({ target: { value: valueInput } }) =>
                         onChange(valueInput)

@@ -5,3 +5,27 @@ input[type="number"] {
 .adortment-select {
   width: auto !important;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.custom-vote-button {
+  position: fixed !important;
+  bottom: 15% !important;
+  left: 60% !important;
+  color: white;
+}
+
+@media (max-width: 678px) {
+  .custom-vote-button {
+    left: 80% !important;
+  }
+}

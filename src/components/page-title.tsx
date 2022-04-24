@@ -6,7 +6,7 @@ type PageTitleProps = {
 
 const PageTitle = ({ title }: PageTitleProps) => (
   <Helmet>
-    <title>{title} - ArisanWae</title>
+    <title>{title} - ArisanBae</title>
   </Helmet>
 );
 

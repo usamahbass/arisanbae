@@ -5,34 +5,118 @@ import {
   Box,
   Grid,
   Stack,
-  Fab,
   Tooltip,
-  NativeSelect,
-  InputLabel,
-  FormControl,
 } from "@mui/material";
 import Helmet from "react-helmet";
 import SettingIcon from "@mui/icons-material/Settings";
 import { ArisanContext } from "context/context";
 import { CardWinner, CardMembers } from "components/card-stats";
-import DaduIcon from "@mui/icons-material/Casino";
-import { setArisanKe } from "context/action";
+import type { Schedule } from "types/core/schedule";
+import type { ArisanMemberTypes } from "types/core/member";
+import {
+  setArisanKe,
+  setArisanMembers,
+  setArisanSchedule,
+  setArisanKeHasBeenVote,
+} from "context/action";
 import { greetingFunc } from "helper/greetingFunc";
+import { pickRandomWinner } from "helper/pickRandomWinner";
 import ArisanLayout from "layouts";
 import SettingViews from "./settings";
 import BottomNav from "./bottom-nav";
-import ChartRegion from "./chart-region";
 import TableView from "./table";
+import ModalWinner from "components/modal-winner";
+import ConfirmDialog from "components/confirm-dialog";
+import LoadingOverlay from "components/loading-overlay";
 
 const AuthenticatedPages = () => {
   const { state, dispatch } = useContext(ArisanContext);
 
+  const [winners, setWinners] = useState([]);
   const [valueNav, setValueNav] = useState(0);
   const [openSetting, setOpenSetting] = useState(false);
+  const [openModalWinner, setOpenModalWinner] = useState(false);
+  const [loadingFindWinner, setLoadingFindWinner] = useState(false);
+  const [openModalConfirmVote, setOpenModalConfirmVote] = useState(false);
+
+  const handleVoteArisan = () => {
+    // set loading state, close confirmation dialog
+    setLoadingFindWinner(true);
+    setOpenModalConfirmVote(false);
+
+    const isNameMapper = state?.arisan?.members
+      ?.filter((member: ArisanMemberTypes) => !member.winner)
+      .map((member: ArisanMemberTypes) => member.name);
+
+    const isRandomWinner = pickRandomWinner(
+      isNameMapper,
+      parseInt(state?.arisan?.winners_count)
+    );
+
+    const isWinners = state.arisan.members.filter((member: ArisanMemberTypes) =>
+      isRandomWinner.includes(member.name)
+    );
+
+    const newArisanMemberField = state.arisan.members.map(
+      (member: ArisanMemberTypes) => {
+        // if winner
+        if (isRandomWinner.includes(member.name)) {
+          // change winner field to true
+
+          const memberWinner: ArisanMemberTypes = {
+            ...member,
+            winner: true,
+          };
+
+          return memberWinner;
+        }
+
+        return member;
+      }
+    );
+
+    const newArisanScheduleField = state.arisan.schedule[
+      state.arisan.arisan_ke
+    ].map((schedule: Schedule) => {
+      if (isRandomWinner.includes(schedule.name)) {
+        // change winner field to true
+
+        const scheduleWinner: ArisanMemberTypes = {
+          ...schedule,
+          winner: true,
+        };
+
+        return scheduleWinner;
+      }
+
+      return schedule;
+    });
+
+    setTimeout(() => {
+      setLoadingFindWinner(false);
+      setOpenModalWinner(true);
+      setWinners(isWinners);
+
+      dispatch(setArisanKeHasBeenVote(state.arisan.arisan_ke));
+      dispatch(setArisanMembers(newArisanMemberField));
+      dispatch(
+        setArisanSchedule({
+          ...state.arisan.schedule,
+          [state.arisan.arisan_ke]: newArisanScheduleField,
+        })
+      );
+    }, 1000);
+  };
 
   useEffect(() => {
     dispatch(setArisanKe(1));
   }, []);
+
+  useEffect(() => {
+    if (valueNav === 3) {
+      setOpenSetting(true);
+    }
+  }, [valueNav]);
 
   return (
     <ArisanLayout>
@@ -68,68 +152,35 @@ const AuthenticatedPages = () => {
                 <CardMembers />
               </Grid>
             </Grid>
-
-            <ChartRegion />
           </Stack>
         ) : (
-          <Stack mt={5} spacing={5}>
-            <Stack direction="row" justifyContent="space-between">
-              <Stack>
-                <Typography fontSize="1.2rem">Tabel Arisan</Typography>
-                <Typography color="#333" fontWeight={400} fontSize="1rem">
-                  Berikut tabel arisan {state?.arisan?.name}.
-                </Typography>
-              </Stack>
-
-              <FormControl sx={{ width: "30%" }}>
-                <InputLabel variant="standard" htmlFor="arisan-ke">
-                  Arisan Ke
-                </InputLabel>
-
-                <NativeSelect
-                  value={state?.arisan?.arisan_ke ?? 1}
-                  onChange={(event) =>
-                    dispatch(setArisanKe(parseInt(event?.target.value)))
-                  }
-                  inputProps={{
-                    name: "arisan-ke",
-                    id: "arisan-ke",
-                  }}
-                >
-                  {Array.from(
-                    new Array(parseInt(state?.arisan?.member_count))
-                  ).map((el, i) => {
-                    const isValue = i + 1;
-
-                    return <option value={isValue}>{isValue}</option>;
-                  })}
-                </NativeSelect>
-              </FormControl>
-            </Stack>
-
-            <TableView />
-
-            <Tooltip title="Koclok">
-              <Fab
-                color="primary"
-                sx={{
-                  left: "60%",
-                  bottom: "15%",
-                  color: "white",
-                  position: "fixed",
-                }}
-              >
-                <DaduIcon />
-              </Fab>
-            </Tooltip>
-          </Stack>
+          <TableView handleVoteWinner={() => setOpenModalConfirmVote(true)} />
         )}
       </Box>
 
       <SettingViews
         isOpen={openSetting}
-        handleClose={() => setOpenSetting(false)}
+        handleClose={() => {
+          setOpenSetting(false);
+          setValueNav(0);
+        }}
       />
+
+      <ModalWinner
+        winners={winners}
+        isOpen={openModalWinner}
+        onClose={() => setOpenModalWinner(false)}
+      />
+
+      <ConfirmDialog
+        description=""
+        isOpen={openModalConfirmVote}
+        handleConfirm={handleVoteArisan}
+        title="Apakah anda ingin mengundi pemenang arisan ini?"
+        handleClose={() => setOpenModalConfirmVote(false)}
+      />
+
+      <LoadingOverlay isOpen={loadingFindWinner} />
 
       <BottomNav
         navValue={valueNav}

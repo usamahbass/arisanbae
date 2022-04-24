@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import { Store } from "context/context";
 import { Theme } from "theme";
 import App from "./App";
-import LoadingGlobal from "components/loading.global";
+import LoadingGlobal from "components/loading-global";
 import reportWebVitals from "./reportWebVitals";
 import "./i18n";
 import "./css/index.css";

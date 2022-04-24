@@ -80,7 +80,7 @@ export const reducer: Reducer<initialStateType | any, ReducerActionType> = (
         arisan: {
           ...state.arisan,
           arisanKeHasBeenVote: [
-            ...state.arisan.arisanKeHasBeenVote,
+            ...(state.arisan.arisanKeHasBeenVote ?? ""),
             action.payload,
           ],
         },

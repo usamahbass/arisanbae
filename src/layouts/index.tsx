@@ -13,7 +13,7 @@ const ArisanLayout = ({ children, isScreen }: ArisanLayoutProps) => {
     <>
       <Box minHeight="100%">
         <Box className={classes.container}>
-          <Box bgcolor="white" p="1rem" height={isScreen ? "100vh" : "100%"}>
+          <Box bgcolor="white" p="1rem" pb="2rem" height={isScreen ? "100vh" : "100%"}>
             {children}
           </Box>
         </Box>

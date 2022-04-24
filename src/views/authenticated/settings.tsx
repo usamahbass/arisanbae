@@ -1,4 +1,4 @@
-import { forwardRef, ReactElement, Ref, useContext } from "react";
+import { useContext } from "react";
 import {
   Dialog,
   AppBar,
@@ -12,7 +12,6 @@ import {
   Divider,
   NativeSelect,
 } from "@mui/material";
-import { TransitionProps } from "@mui/material/transitions";
 import CloseIcon from "@mui/icons-material/Close";
 import { ArisanContext } from "context/context";
 import {
@@ -23,20 +22,12 @@ import {
   setAuthentication,
 } from "context/action";
 import { LANGUAGE } from "constants/language";
+import TransitionSlide from "components/slide-transition";
 
 type SettingViewProps = {
   isOpen: boolean;
   handleClose: Function | any;
 };
-
-const TransitionSlide = forwardRef(function Transition(
-  props: TransitionProps & {
-    children: ReactElement;
-  },
-  ref: Ref<unknown>
-) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
 
 const SettingViews = ({ isOpen, handleClose }: SettingViewProps) => {
   const { state, dispatch } = useContext(ArisanContext);

@@ -40,7 +40,7 @@ const WelcomePages = () => {
           <Box className={classes.header}>
             <Box display="flex" alignItems="center">
               <img className={classes.logo} src={LogoArisan} alt="logoarisan" />
-              <Typography className={classes.logoName}>ArisanWae</Typography>
+              <Typography className={classes.logoName}>ArisanBae</Typography>
             </Box>
 
             <Box>
