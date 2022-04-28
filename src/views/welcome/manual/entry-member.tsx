@@ -83,7 +83,7 @@ const EntryMemberPages = () => {
 
             <form autoComplete="off" onSubmit={handleSubmit(handleEntryMember)}>
               <Stack
-                height="calc(100vh - 330px)"
+                height="calc(100vh - 300px)"
                 padding=".5rem"
                 overflow="auto"
                 spacing={3}

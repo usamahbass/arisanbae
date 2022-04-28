@@ -78,3 +78,10 @@ export const setArisanHistory = (arisanHistory: ArisanHistoryType) => ({
   type: TypesReducer.SET_ARISAN_HISTORY,
   payload: arisanHistory,
 });
+
+export const setListsArisanHistory = (
+  listsArisanHistory: ArisanHistoryType[]
+) => ({
+  type: TypesReducer.SET_LISTS_ARISAN_HISTORY,
+  payload: listsArisanHistory,
+});

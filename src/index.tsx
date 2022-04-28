@@ -1,5 +1,7 @@
 import { StrictMode, Suspense } from "react";
 import { render } from "react-dom";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { Store } from "context/context";
 import { Theme } from "theme";
 import App from "./App";
@@ -13,7 +15,9 @@ render(
     <Theme>
       <Store>
         <Suspense fallback={<LoadingGlobal />}>
-          <App />
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <App />
+          </LocalizationProvider>
         </Suspense>
       </Store>
     </Theme>

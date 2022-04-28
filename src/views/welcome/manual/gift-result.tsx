@@ -100,7 +100,7 @@ const GiftResult = () => {
               color: "white",
               position: "absolute",
               bottom: "30px",
-              width: "88%",
+              width: "92%",
             }}
           >
             Selanjutnya

@@ -13,16 +13,6 @@ type BottomNavProps = {
 
 const BottomNav = ({ onChangeNav, navValue }: BottomNavProps) => {
   return (
-    // <Paper
-    //   elevation={3}
-    //   sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-    // >
-    //   <BottomNavigation showLabels value={navValue} onChange={onChangeNav}>
-    //     <BottomNavigationAction label="Dasbor" icon={<DashboardIcon />} />
-    //     <BottomNavigationAction label="Tabel" icon={<TableViewIcon />} />
-    //   </BottomNavigation>
-    // </Paper>
-
     <div className="custom-bottom-navigation">
       <ul>
         {NAVS.map((nav) => (

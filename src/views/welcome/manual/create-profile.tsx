@@ -105,7 +105,7 @@ const CreateProfile = () => {
               autoComplete="off"
               onSubmit={handleSubmit(handleCreateProfile)}
             >
-              <Stack height="calc(100vh - 330px)" overflow="auto" spacing={3}>
+              <Stack height="calc(100vh - 280px)" overflow="auto" spacing={3}>
                 <Controller
                   name="arisan_name"
                   control={control}

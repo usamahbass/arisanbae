@@ -27,6 +27,7 @@ import EmptyState from "components/empty-state";
 import type { Schedule } from "types/core/schedule";
 import type { ArisanHistoryType } from "types/core/history";
 import type { ArisanMemberTypes } from "types/core/member";
+import EmptyImage from "assets/svg/done.svg";
 
 type TableProps = {
   handleVoteWinner: Function | any;
@@ -145,6 +146,7 @@ const Table = ({ handleVoteWinner }: TableProps) => {
         {isHasBeenVote ? (
           <EmptyState
             sx={{ marginTop: "1rem" }}
+            image={EmptyImage}
             text={`arisan ${state?.arisan?.arisan_ke} telah diundi.`}
           />
         ) : (
@@ -154,6 +156,11 @@ const Table = ({ handleVoteWinner }: TableProps) => {
             loading={isLoading}
             hideFooterSelectedRowCount
             selectionModel={isPaidMember}
+            componentsProps={{
+              pagination: {
+                labelRowsPerPage: "Baris per halaman",
+              },
+            }}
             onSelectionModelChange={(selected: GridSelectionModel) => {
               let historyPayload: ArisanHistoryType[] = [];
 

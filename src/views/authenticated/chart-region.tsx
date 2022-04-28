@@ -39,9 +39,6 @@ const ChartRegion = () => {
   const findENTelp = state?.arisan?.members?.filter(
     (member: ArisanMemberTypes) => member.telp.includes(PHONE.EN)
   )?.length;
-  const findARTelp = state?.arisan?.members?.filter(
-    (member: ArisanMemberTypes) => member.telp.includes(PHONE.AR)
-  )?.length;
 
   const chartOptions: any = {
     colors: [
@@ -78,7 +75,7 @@ const ChartRegion = () => {
           type="pie"
           height={280}
           options={chartOptions}
-          series={[findIDTelp, findENTelp, findARTelp]}
+          series={[findIDTelp, findENTelp]}
         />
       </ChartWrapperStyle>
     </Card>

@@ -1,15 +1,15 @@
 import { Stack, Typography, StackProps } from "@mui/material";
-import EmptyImage from "assets/svg/done.svg";
 
 type EmptyStateProps = {
   text?: string;
+  image: string;
 } & StackProps;
 
-const EmptyState = ({ text, ...rest }: EmptyStateProps) => (
+const EmptyState = ({ image, text, ...rest }: EmptyStateProps) => (
   <Stack spacing={3} {...rest}>
     <img
-      width="30%"
-      src={EmptyImage}
+      width="60%"
+      src={image}
       alt="emptydata"
       style={{ display: "block", margin: "0 auto" }}
     />

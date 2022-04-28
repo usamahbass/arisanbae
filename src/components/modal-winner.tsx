@@ -23,7 +23,7 @@ const ModalWinner = ({ isOpen, onClose, winners }: ModalWinnerProps) => {
   const { state } = useContext(ArisanContext);
 
   return (
-    <Dialog open={isOpen} onClose={onClose} TransitionComponent={TransitionSlide}>
+    <Dialog open={isOpen} onClose={onClose} TransitionComponent={TransitionSlide} hideBackdrop>
       <DialogTitle
         sx={{ bgcolor: "info.main", color: "white", fontSize: "1rem" }}
       >

@@ -9,14 +9,18 @@ import {
   Slide,
 } from "@mui/material";
 import Helmet from "react-helmet";
+import Confetti from "react-confetti";
+import useWindowSize from "react-use/lib/useWindowSize";
 import SettingIcon from "@mui/icons-material/Settings";
 import { ArisanContext } from "context/context";
 import { CardWinner, CardMembers } from "components/card-stats";
 import type { Schedule } from "types/core/schedule";
 import type { ArisanMemberTypes } from "types/core/member";
+import type { ArisanHistoryType } from "types/core/history";
 import {
   setArisanKe,
   setArisanMembers,
+  setArisanHistory,
   setArisanSchedule,
   setArisanKeHasBeenVote,
 } from "context/action";
@@ -30,12 +34,15 @@ import ModalWinner from "components/modal-winner";
 import ConfirmDialog from "components/confirm-dialog";
 import LoadingOverlay from "components/loading-overlay";
 import History from "./history";
+import InsightTable from "./insight-table";
 
 const AuthenticatedPages = () => {
+  const { width, height } = useWindowSize();
   const { state, dispatch } = useContext(ArisanContext);
 
   const [winners, setWinners] = useState([]);
   const [valueNav, setValueNav] = useState(0);
+  const [partyWinner, setPartyWinner] = useState(false);
   const [openSetting, setOpenSetting] = useState(false);
   const [openModalWinner, setOpenModalWinner] = useState(false);
   const [loadingFindWinner, setLoadingFindWinner] = useState(false);
@@ -58,6 +65,8 @@ const AuthenticatedPages = () => {
     const isWinners = state.arisan.members.filter((member: ArisanMemberTypes) =>
       isRandomWinner.includes(member.name)
     );
+
+    console.log(isWinners, "HERE");
 
     const newArisanMemberField = state.arisan.members.map(
       (member: ArisanMemberTypes) => {
@@ -98,6 +107,17 @@ const AuthenticatedPages = () => {
       setLoadingFindWinner(false);
       setOpenModalWinner(true);
       setWinners(isWinners);
+      setPartyWinner(!partyWinner);
+
+      // setHistory
+      isWinners.map((isWinner: ArisanMemberTypes) => {
+        const isHistory: ArisanHistoryType = {
+          name: `${isWinner.name} telah memenangkan arisan ke ${state?.arisan?.arisan_ke}`,
+          date: new Date(),
+        };
+
+        return dispatch(setArisanHistory(isHistory));
+      });
 
       dispatch(setArisanKeHasBeenVote(state.arisan.arisan_ke));
       dispatch(setArisanMembers(newArisanMemberField));
@@ -120,89 +140,109 @@ const AuthenticatedPages = () => {
     }
   }, [valueNav]);
 
+  const isHistoryTabAndEmpty =
+    valueNav === 2 && state?.arisan?.history?.length <= 0;
+
   return (
-    <ArisanLayout>
-      <Helmet title={state.arisan?.name} />
+    <>
+      {partyWinner && (
+        <Confetti
+          width={width}
+          height={height}
+          recycle={false}
+          style={{ pointerEvents: "none" }}
+          numberOfPieces={partyWinner ? 500 : 0}
+          onConfettiComplete={() => setPartyWinner(false)}
+        />
+      )}
 
-      <Box paddingBottom="4rem !important">
-        <Box display="flex" py="1rem" justifyContent="space-between">
-          <Typography fontSize="1.2rem">
-            <Typography variant="h6" fontSize="1.2rem">
-              Halo, {greetingFunc()}
+      <ArisanLayout isScreen={valueNav === 1 || isHistoryTabAndEmpty}>
+        <Helmet title={state.arisan?.name} />
+
+        <Box paddingBottom="4rem !important">
+          <Box display="flex" py="1rem" justifyContent="space-between">
+            <Typography fontSize="1.2rem">
+              <Typography variant="h6" fontSize="1.2rem">
+                Halo, {greetingFunc()}
+              </Typography>
+              {state?.arisan?.administrator?.manager}
             </Typography>
-            {state?.arisan?.administrator?.manager}
-          </Typography>
 
-          <Tooltip title="Pengaturan">
-            <IconButton
-              sx={{ position: "absolute", right: 10 }}
-              onClick={() => setOpenSetting(true)}
-            >
-              <SettingIcon />
-            </IconButton>
-          </Tooltip>
+            <Tooltip title="Pengaturan">
+              <IconButton
+                sx={{ position: "absolute", right: 10 }}
+                onClick={() => setOpenSetting(true)}
+              >
+                <SettingIcon />
+              </IconButton>
+            </Tooltip>
+          </Box>
+
+          <Slide direction="left" in={valueNav === 0}>
+            <Box display={valueNav === 0 ? "block" : "none"}>
+              <Stack spacing={5}>
+                <Grid container mt={3} spacing={3}>
+                  <Grid item xs={6} sm={6}>
+                    <CardWinner />
+                  </Grid>
+
+                  <Grid item xs={6} sm={6}>
+                    <CardMembers />
+                  </Grid>
+                </Grid>
+
+                <InsightTable />
+              </Stack>
+            </Box>
+          </Slide>
+
+          <Slide direction="left" in={valueNav === 1}>
+            <Box display={valueNav === 1 ? "block " : "none"}>
+              <TableView
+                handleVoteWinner={() => setOpenModalConfirmVote(true)}
+              />
+            </Box>
+          </Slide>
+
+          <Slide direction="left" in={valueNav === 2}>
+            <Box display={valueNav === 2 ? "block " : "none"}>
+              <History />
+            </Box>
+          </Slide>
         </Box>
 
-        <Slide direction="left" in={valueNav === 0}>
-          <Box display={valueNav === 0 ? "block" : "none"}>
-            <Stack spacing={5}>
-              <Grid container mt={3} spacing={3}>
-                <Grid item xs={6} sm={6}>
-                  <CardWinner />
-                </Grid>
+        <SettingViews
+          isOpen={openSetting}
+          handleClose={() => {
+            setOpenSetting(false);
+            setValueNav(0);
+          }}
+        />
 
-                <Grid item xs={6} sm={6}>
-                  <CardMembers />
-                </Grid>
-              </Grid>
-            </Stack>
-          </Box>
-        </Slide>
+        <ModalWinner
+          winners={winners}
+          isOpen={openModalWinner}
+          onClose={() => setOpenModalWinner(false)}
+        />
 
-        <Slide direction="left" in={valueNav === 1}>
-          <Box display={valueNav === 1 ? "block " : "none"}>
-            <TableView handleVoteWinner={() => setOpenModalConfirmVote(true)} />
-          </Box>
-        </Slide>
+        <ConfirmDialog
+          description=""
+          isOpen={openModalConfirmVote}
+          handleConfirm={handleVoteArisan}
+          title="Apakah anda ingin mengundi pemenang arisan ini?"
+          handleClose={() => setOpenModalConfirmVote(false)}
+        />
 
-        <Slide direction="left" in={valueNav === 2}>
-          <Box display={valueNav === 2 ? "block " : "none"}>
-            <History />
-          </Box>
-        </Slide>
-      </Box>
+        <LoadingOverlay isOpen={loadingFindWinner} />
 
-      <SettingViews
-        isOpen={openSetting}
-        handleClose={() => {
-          setOpenSetting(false);
-          setValueNav(0);
-        }}
-      />
-
-      <ModalWinner
-        winners={winners}
-        isOpen={openModalWinner}
-        onClose={() => setOpenModalWinner(false)}
-      />
-
-      <ConfirmDialog
-        description=""
-        isOpen={openModalConfirmVote}
-        handleConfirm={handleVoteArisan}
-        title="Apakah anda ingin mengundi pemenang arisan ini?"
-        handleClose={() => setOpenModalConfirmVote(false)}
-      />
-
-      <LoadingOverlay isOpen={loadingFindWinner} />
-
-      <BottomNav
-        navValue={valueNav}
-        onChangeNav={(event: any, newValue: number) => {
-          setValueNav(newValue);
-        }}
-      />
-    </ArisanLayout>
+        <BottomNav
+          navValue={valueNav}
+          onChangeNav={(event: any, newValue: number) => {
+            setValueNav(newValue);
+          }}
+        />
+      </ArisanLayout>
+    </>
   );
 };
 

@@ -43,10 +43,15 @@ const ConfirmDialog = ({
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button color="error" onClick={handleClose}>
+        <Button variant="contained" color="error" onClick={handleClose}>
           Tidak
         </Button>
-        <Button onClick={handleConfirm} autoFocus>
+        <Button
+          color="info"
+          variant="contained"
+          onClick={handleConfirm}
+          autoFocus
+        >
           Ya
         </Button>
       </DialogActions>
