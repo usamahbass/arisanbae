@@ -54,9 +54,12 @@ const EntryMemberPages = () => {
     );
 
     const arisanSchedule = createArisanKeByCount(
-      parseInt(state?.arisan?.member_count),
+      parseInt(state?.arisan?.member_count) /
+        parseInt(state?.arisan?.winners_count),
       members
     );
+
+    console.log(arisanSchedule, "HERE");
 
     dispatch(setArisanMembers(members));
     dispatch(setArisanSchedule(arisanSchedule));

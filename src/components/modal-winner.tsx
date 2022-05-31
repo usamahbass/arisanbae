@@ -23,23 +23,28 @@ const ModalWinner = ({ isOpen, onClose, winners }: ModalWinnerProps) => {
   const { state } = useContext(ArisanContext);
 
   return (
-    <Dialog open={isOpen} onClose={onClose} TransitionComponent={TransitionSlide} hideBackdrop>
+    <Dialog
+      open={isOpen}
+      onClose={onClose}
+      TransitionComponent={TransitionSlide}
+      hideBackdrop
+    >
       <DialogTitle
         sx={{ bgcolor: "info.main", color: "white", fontSize: "1rem" }}
       >
-        Pemenang Arisan {state?.arisan?.name}, Arisan Ke{" "}
+        Pemenang Arisan <b>{state?.arisan?.name}</b>, Arisan Ke{" "}
         {state?.arisan?.arisan_ke}
       </DialogTitle>
 
       <DialogContent>
         <List sx={{ marginTop: "1rem" }}>
-          <ListItem alignItems="flex-start">
-            {winners?.map((winner, idx) => (
+          {winners?.map((winner, idx) => (
+            <ListItem alignItems="flex-start" key={`key-${idx}`}>
               <ListItemText
                 primary={`${idx + 1}. ${winner.name} (${winner.telp})`}
               />
-            ))}
-          </ListItem>
+            </ListItem>
+          ))}
         </List>
       </DialogContent>
 

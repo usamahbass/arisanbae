@@ -7,27 +7,11 @@ import {
   GridValueGetterParams,
 } from "@mui/x-data-grid";
 import { ArisanContext } from "context/context";
-import type { Schedule } from "types/core/schedule";
-import type { ArisanMemberTypes } from "types/core/member";
 
 const InsightTable = () => {
   const { state } = useContext(ArisanContext);
 
-  const rows: GridRowsProp = state?.arisan?.members?.map(
-    (member: ArisanMemberTypes, idx: number) => {
-      const customID = idx + 1;
-
-      if (
-        state?.arisan?.schedule?.[customID]?.some(
-          (elem: Schedule) => elem.winner
-        )
-      ) {
-        return { ...member, winner: true, winner_count: customID };
-      }
-
-      return member;
-    }
-  );
+  const rows: GridRowsProp = state?.arisan?.members;
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -51,11 +35,9 @@ const InsightTable = () => {
       width: 150,
     },
     {
-      field: "",
+      field: "winner_ke",
       headerName: "Pemenang Ke",
       width: 150,
-      valueGetter: (params: GridValueGetterParams) =>
-        params?.row?.winner ? `${params?.row?.winner_count ?? "-"}` : `-`,
     },
   ];
 

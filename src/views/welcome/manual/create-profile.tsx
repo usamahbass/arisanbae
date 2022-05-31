@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useWatch } from "react-hook-form";
 import {
   Box,
   Slide,
@@ -29,6 +29,7 @@ import { convertPriceToInt } from "helper/convertPriceToInt";
 import ArisanLayout from "layouts";
 import PriceInput from "components/price-input";
 import HeaderBack from "layouts/header-back";
+import { isOdd } from "helper/isOdd";
 
 const CreateProfile = () => {
   const { dispatch, state } = useContext(ArisanContext);
@@ -36,15 +37,20 @@ const CreateProfile = () => {
     watch,
     control,
     setValue,
+    setError,
+    clearErrors,
     handleSubmit,
-    formState: { isValid },
-  } = useForm({
-    mode: "onChange",
-  });
+    formState: { errors },
+  } = useForm();
 
   const isSlide = useSlide();
   const watchPaymentTermType = watch("payment_term.type", null);
   const termName = watchPaymentTermType === "day" ? "Hari" : "Bulan";
+
+  const watchMemberCount = useWatch({ name: "member_count", control });
+  const watchWinnerCount = useWatch({ name: "winners_count", control });
+  // const watchMemberCount = watch("member_count", null);
+  // const watchWinnerCount = watch("winners_count", null);
 
   const handleCreateProfile = (values: any) => {
     const administratorProfile: AdministratorTypes = {
@@ -70,6 +76,31 @@ const CreateProfile = () => {
     setValue("payment_term.type", "month");
     setValue("payment_term.content", "1");
   }, []);
+
+  useEffect(() => {
+    const isNotValidWinner =
+      parseInt(watchMemberCount) < parseInt(watchWinnerCount);
+
+    // check isOdd members_count
+
+    const isOddMemberCount = isOdd(parseInt(watchMemberCount));
+
+    if (isNotValidWinner) {
+      setError("winners_count", {
+        message:
+          "Tidak dapat mengkalkulasi pemenang, harap masukan pemenang yang benar.",
+      });
+    }
+
+    if (isOddMemberCount && !isOdd(watchWinnerCount)) {
+      setError("winners_count", {
+        message:
+          "Tidak dapat mengkalkulasi pemenang, harap masukan pemenang yang benar.",
+      });
+    }
+
+    return () => clearErrors("winners_count");
+  }, [watchMemberCount, watchWinnerCount]);
 
   useEffect(() => {
     if (state?.arisan) {
@@ -118,6 +149,8 @@ const CreateProfile = () => {
                       variant="standard"
                       value={value}
                       sx={{ fontWeight: 400, color: "#333" }}
+                      error={errors?.arisan_name}
+                      helperText={errors?.arisan_name && "Masukkan nama arisan"}
                       defaultValue={state?.arisan?.name}
                       onChange={({ target: { value: valueInput } }) =>
                         onChange(valueInput)
@@ -138,6 +171,8 @@ const CreateProfile = () => {
                       variant="standard"
                       value={value}
                       sx={{ fontWeight: 400 }}
+                      error={errors?.manager}
+                      helperText={errors?.manager && "Masukkan pengelola"}
                       defaultValue={state?.arisan?.administrator?.manager}
                       onChange={({ target: { value: valueInput } }) =>
                         onChange(valueInput)
@@ -157,13 +192,18 @@ const CreateProfile = () => {
                       variant="standard"
                       value={value}
                       sx={{ fontWeight: 400 }}
+                      error={errors?.wages}
                       onChange={({ target: { value: valueInput } }) =>
                         onChange(valueInput)
                       }
                       InputProps={{
                         inputComponent: PriceInput,
                       }}
-                      helperText="upah setiap dilakukan pengundingan."
+                      helperText={
+                        errors?.wages
+                          ? "Masukkan pengelola"
+                          : "upah setiap dilakukan pengundingan."
+                      }
                     />
                   )}
                 />
@@ -179,12 +219,14 @@ const CreateProfile = () => {
                       variant="standard"
                       value={value}
                       sx={{ fontWeight: 400 }}
+                      error={errors?.dues}
                       onChange={({ target: { value: valueInput } }) =>
                         onChange(valueInput)
                       }
                       InputProps={{
                         inputComponent: PriceInput,
                       }}
+                      helperText={errors?.dues && "Masukkan iuran arisan"}
                     />
                   )}
                 />
@@ -205,6 +247,11 @@ const CreateProfile = () => {
                         fontWeight: 400,
                         color: "#333",
                       }}
+                      error={errors?.member_count}
+                      helperText={
+                        errors?.member_count &&
+                        "Masukkan jumlah orang yang ikut"
+                      }
                       defaultValue={state?.arisan?.member_count}
                       onChange={({ target: { value: valueInput } }) =>
                         onChange(valueInput)
@@ -212,6 +259,38 @@ const CreateProfile = () => {
                     />
                   )}
                 />
+
+                {/* {watchMemberCount && ( */}
+                <Controller
+                  name="winners_count"
+                  control={control}
+                  defaultValue={null}
+                  rules={{ required: true }}
+                  render={({ field: { onChange, value } }) => (
+                    <TextField
+                      size="medium"
+                      type="number"
+                      error={errors?.winners_count}
+                      label="Jumlah orang yang dapat"
+                      variant="standard"
+                      value={value}
+                      helperText={
+                        errors?.winners_count?.message ??
+                        "Masukkan jumlah orang yang dapat"
+                      }
+                      sx={{
+                        fontWeight: 400,
+                        color: "#333",
+                        appearance: "none",
+                      }}
+                      defaultValue={state?.arisan?.winners_count}
+                      onChange={({ target: { value: valueInput } }) =>
+                        onChange(valueInput)
+                      }
+                    />
+                  )}
+                />
+                {/* )} */}
 
                 <FormControl>
                   <InputLabel variant="standard" htmlFor="payment_term_type">
@@ -267,31 +346,6 @@ const CreateProfile = () => {
                     )}
                   />
                 </FormControl>
-
-                <Controller
-                  name="winners_count"
-                  control={control}
-                  defaultValue={null}
-                  rules={{ required: true }}
-                  render={({ field: { onChange, value } }) => (
-                    <TextField
-                      size="medium"
-                      type="number"
-                      label="Jumlah orang yang dapat"
-                      variant="standard"
-                      value={value}
-                      sx={{
-                        fontWeight: 400,
-                        color: "#333",
-                        appearance: "none",
-                      }}
-                      defaultValue={state?.arisan?.winners_count}
-                      onChange={({ target: { value: valueInput } }) =>
-                        onChange(valueInput)
-                      }
-                    />
-                  )}
-                />
               </Stack>
 
               <Button
@@ -300,7 +354,6 @@ const CreateProfile = () => {
                 type="submit"
                 color="primary"
                 variant="contained"
-                disabled={!isValid}
                 endIcon={<ArrowForwardIcon />}
                 sx={{
                   color: "white",

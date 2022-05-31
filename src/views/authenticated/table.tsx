@@ -129,13 +129,16 @@ const Table = ({ handleVoteWinner }: TableProps) => {
               id: "arisan-ke",
             }}
           >
-            {Array.from(new Array(parseInt(state?.arisan?.member_count))).map(
-              (el, i) => {
-                const isValue = i + 1;
+            {Array.from(
+              new Array(
+                parseInt(state?.arisan?.member_count) /
+                  parseInt(state?.arisan?.winners_count)
+              )
+            ).map((el, i) => {
+              const isValue = i + 1;
 
-                return <option value={isValue}>{isValue}</option>;
-              }
-            )}
+              return <option value={isValue}>{isValue}</option>;
+            })}
           </NativeSelect>
         </FormControl>
       </Stack>
@@ -154,13 +157,7 @@ const Table = ({ handleVoteWinner }: TableProps) => {
             rows={rows}
             columns={columns}
             loading={isLoading}
-            hideFooterSelectedRowCount
             selectionModel={isPaidMember}
-            componentsProps={{
-              pagination: {
-                labelRowsPerPage: "Baris per halaman",
-              },
-            }}
             onSelectionModelChange={(selected: GridSelectionModel) => {
               let historyPayload: ArisanHistoryType[] = [];
 

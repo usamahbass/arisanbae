@@ -66,17 +66,28 @@ const AuthenticatedPages = () => {
       isRandomWinner.includes(member.name)
     );
 
-    console.log(isWinners, "HERE");
+    let isLastWinnerKe = state.arisan.members.reduce(
+      (memberPrev: ArisanMemberTypes, memberNext: ArisanMemberTypes) => {
+        if (memberNext?.winner_ke) {
+          return memberNext?.winner_ke;
+        }
+
+        return 0;
+      }
+    );
 
     const newArisanMemberField = state.arisan.members.map(
       (member: ArisanMemberTypes) => {
         // if winner
         if (isRandomWinner.includes(member.name)) {
+          isLastWinnerKe = isLastWinnerKe + 1;
+
           // change winner field to true
 
           const memberWinner: ArisanMemberTypes = {
             ...member,
             winner: true,
+            winner_ke: isLastWinnerKe,
           };
 
           return memberWinner;
