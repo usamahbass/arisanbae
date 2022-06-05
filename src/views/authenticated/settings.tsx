@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Dialog,
@@ -11,6 +11,7 @@ import {
   ListItemText,
   Divider,
   NativeSelect,
+  Button,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import fileDownload from "js-file-download";
@@ -26,6 +27,7 @@ import {
 import { LANGUAGE } from "constants/language";
 import { replaceAll } from "helper/replaceAll";
 import type { ArisanHistoryType } from "types/core/history";
+import ConfirmDialog from "components/confirm-dialog";
 import TransitionSlide from "components/slide-transition";
 
 type SettingViewProps = {
@@ -36,6 +38,8 @@ type SettingViewProps = {
 const SettingViews = ({ isOpen, handleClose }: SettingViewProps) => {
   const { t, i18n } = useTranslation();
   const { state, dispatch } = useContext(ArisanContext);
+
+  const [logoutDialog, setLogoutDialog] = useState(false);
 
   const handleExportData = () => {
     const localData = JSON.stringify(state);
@@ -142,7 +146,7 @@ const SettingViews = ({ isOpen, handleClose }: SettingViewProps) => {
 
         <Divider />
 
-        <ListItem button onClick={handleLogout}>
+        <ListItem button onClick={() => setLogoutDialog(true)}>
           <ListItemText
             primary={t("home.setting.logout")}
             secondary={t("home.setting.logout_text")}
@@ -151,6 +155,26 @@ const SettingViews = ({ isOpen, handleClose }: SettingViewProps) => {
 
         <Divider />
       </List>
+
+      <ConfirmDialog
+        customActions
+        isOpen={logoutDialog}
+        title={t("home.setting.logout")}
+        handleClose={() => setLogoutDialog(false)}
+        description={t("home.setting.logout_text")}
+      >
+        <Button variant="contained" color="error" onClick={handleExportData}>
+          {t("home.setting.export")}
+        </Button>
+        <Button
+          color="info"
+          variant="contained"
+          onClick={handleLogout}
+          autoFocus
+        >
+          {t("home.setting.logout")}
+        </Button>
+      </ConfirmDialog>
     </Dialog>
   );
 };
