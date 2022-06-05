@@ -13,6 +13,7 @@ import {
   NativeSelect,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import fileDownload from "js-file-download";
 import { ArisanContext } from "context/context";
 import {
   changeCurrentRoutes,
@@ -23,6 +24,7 @@ import {
   setAuthentication,
 } from "context/action";
 import { LANGUAGE } from "constants/language";
+import { replaceAll } from "helper/replaceAll";
 import type { ArisanHistoryType } from "types/core/history";
 import TransitionSlide from "components/slide-transition";
 
@@ -34,6 +36,26 @@ type SettingViewProps = {
 const SettingViews = ({ isOpen, handleClose }: SettingViewProps) => {
   const { t, i18n } = useTranslation();
   const { state, dispatch } = useContext(ArisanContext);
+
+  const handleExportData = () => {
+    const localData = JSON.stringify(state);
+    const bytes = new TextEncoder().encode(localData);
+    const blob = new Blob([bytes], {
+      type: "application/json;charset=utf-8",
+    });
+
+    fileDownload(
+      blob,
+      `${replaceAll(state?.arisan?.name?.toLowerCase(), " ", "_")}.json`
+    );
+
+    const isHistory: ArisanHistoryType = {
+      name: t("home.history.has_exported"),
+      date: new Date(),
+    };
+
+    dispatch(setArisanHistory(isHistory));
+  };
 
   const handleLogout = () => {
     dispatch(removeArisanData());
@@ -109,6 +131,15 @@ const SettingViews = ({ isOpen, handleClose }: SettingViewProps) => {
             ))}
           </NativeSelect>
         </ListItem>
+        <Divider />
+
+        <ListItem button onClick={handleExportData}>
+          <ListItemText
+            primary={t("home.setting.export")}
+            secondary={t("home.setting.export_text")}
+          />
+        </ListItem>
+
         <Divider />
 
         <ListItem button onClick={handleLogout}>

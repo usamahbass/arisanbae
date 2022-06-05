@@ -100,11 +100,14 @@
       "empty_text": "empty history",
       "have_paid": "paid arisan",
       "has_winner_text": "has won the arisan to",
-      "language_change_text": "Language has been changed to"
+      "language_change_text": "Language has been changed to",
+      "has_exported": "Social gathering data has been exported"
     },
     "setting": {
       "title": "Setting",
       "language": "Language",
+      "export": "Export",
+      "export_text": "Export application data, take care if the application is deleted",
       "logout": "Logout",
       "logout_text": "This action will delete all social gathering data, please export the data before exiting."
     }

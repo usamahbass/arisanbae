@@ -100,11 +100,14 @@
       "empty_text": "histori kosong",
       "have_paid": "telah membayar arisan",
       "language_change_text": "Bahasa telah diubah ke",
-      "has_winner_text": "telah memenangkan arisan ke"
+      "has_winner_text": "telah memenangkan arisan ke",
+      "has_exported": "Data arisan telah diekspor"
     },
     "setting": {
       "title": "Pengaturan",
       "language": "Bahasa",
+      "export": "Ekspor",
+      "export_text": "Ekspor data aplikasi, menjaga jaga apabila aplikasi terhapus",
       "logout": "Keluar",
       "logout_text": "Aksi ini akan menghapus semua data arisan, silakan expor data sebelum keluar."
     }
