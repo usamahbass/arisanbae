@@ -1,6 +1,8 @@
 import { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { Box, Button, Slide, Stack, Typography } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
+import Helmet from "react-helmet";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ReactCodeInput from "react-code-input";
 import { ArisanContext } from "context/context";
@@ -14,6 +16,8 @@ import ArisanLayout from "layouts";
 
 const CreatePinPages = () => {
   const isSlide = useSlide();
+
+  const { t } = useTranslation();
 
   const { state, dispatch } = useContext(ArisanContext);
   const { watch, control, handleSubmit } = useForm({
@@ -30,13 +34,16 @@ const CreatePinPages = () => {
 
   return (
     <ArisanLayout isScreen>
+      <Helmet title={t("create_pin_admin.title")} />
       <Slide direction="left" in={isSlide}>
         <Box>
           <Stack ml=".75rem" spacing={4}>
             <Stack spacing={1} mt="1rem">
-              <Typography fontSize="1.5rem">Buat Pin</Typography>
+              <Typography fontSize="1.5rem">
+                {t("create_pin_admin.title")}
+              </Typography>
               <Typography variant="body2">
-                Buat pin untuk masuk ke dalam aplikasi nantinya.
+                {t("create_pin_admin.description")}
               </Typography>
             </Stack>
 
@@ -93,7 +100,7 @@ const CreatePinPages = () => {
                   width: "88%",
                 }}
               >
-                Selanjutnya
+                {t("create_pin_admin.next_button")}
               </Button>
             </form>
           </Stack>

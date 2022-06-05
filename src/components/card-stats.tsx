@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { Card, Typography } from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 import WinnersIcon from "@mui/icons-material/EmojiEvents";
@@ -55,6 +56,7 @@ const IconWrapperStyleMember = styled("div")(({ theme }) => ({
 }));
 
 const CardWinner = () => {
+  const { t } = useTranslation();
   const { state } = useContext(ArisanContext);
 
   const isWinnersCount = state?.arisan?.members?.filter(
@@ -68,13 +70,14 @@ const CardWinner = () => {
       </IconWrapperStyleWinner>
       <Typography variant="h3">{isWinnersCount}</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-        Pemenang
+        {t("home.dashboard.winners")}
       </Typography>
     </RootStyleWinner>
   );
 };
 
 const CardMembers = () => {
+  const { t } = useTranslation();
   const { state } = useContext(ArisanContext);
 
   return (
@@ -86,7 +89,7 @@ const CardMembers = () => {
         {parseInt(state?.arisan?.member_count)}
       </Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-        Jumlah Member
+        {t("home.dashboard.member_count")}
       </Typography>
     </RootStyleMember>
   );

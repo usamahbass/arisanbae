@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Dialog,
   DialogTitle,
@@ -20,6 +21,7 @@ type ModalWinnerProps = {
 };
 
 const ModalWinner = ({ isOpen, onClose, winners }: ModalWinnerProps) => {
+  const { t } = useTranslation();
   const { state } = useContext(ArisanContext);
 
   return (
@@ -32,8 +34,8 @@ const ModalWinner = ({ isOpen, onClose, winners }: ModalWinnerProps) => {
       <DialogTitle
         sx={{ bgcolor: "info.main", color: "white", fontSize: "1rem" }}
       >
-        Pemenang Arisan <b>{state?.arisan?.name}</b>, Arisan Ke{" "}
-        {state?.arisan?.arisan_ke}
+        {t("home.table.dialog.winner.title")} <b>{state?.arisan?.name}</b>,{" "}
+        {t("home.table.dialog.winner.arisan_ke")} {state?.arisan?.arisan_ke}
       </DialogTitle>
 
       <DialogContent>
@@ -50,7 +52,7 @@ const ModalWinner = ({ isOpen, onClose, winners }: ModalWinnerProps) => {
 
       <DialogActions>
         <Button color="info" onClick={onClose}>
-          Tutup
+          {t("home.table.dialog.winner.close")}
         </Button>
       </DialogActions>
     </Dialog>

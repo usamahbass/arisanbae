@@ -11,11 +11,102 @@
     "title": "Buat Arisan Baru",
     "description": "Lengkapi data arisan kamu di bawah ini, ya",
     "input_one": "Nama Arisan",
+    "error_input_one": "Masukkan nama arisan",
     "input_two": "Pengelola",
+    "error_input_two": "Masukkan pengelola",
     "input_three": "Upah Pengelola",
+    "error_input_three": "Masukkan upah pengelola",
+    "helper_input_three": "upah setiap dilakukan pengundingan.",
     "input_four": "Iuran Arisan",
-    "input_five": "Tipe jangka iuran",
-    "input_six": "Jangka iuran",
-    "input_seven": "Jumlah orang yang dapat"
+    "error_input_four": "Masukkan iuran arisan",
+    "input_five": "Jumlah orang yang ikut",
+    "error_input_five": "Masukkan jumlah orang yang ikut",
+    "input_six": "Jumlah orang yang dapat",
+    "error_input_six": "Tidak dapat mengkalkulasi pemenang, harap masukkan pemenang yang benar",
+    "input_seven": "Tipe jangka iuran",
+    "input_eight": "Jangka Iuran",
+    "day": "Hari",
+    "month": "Bulan",
+    "next_button": "Selanjutnya"
+  },
+  "entry_member": {
+    "title": "Isi Member",
+    "description": "Silakan isi member sesuai jumlah member yang telah ditentukan diawal.",
+    "input_name": "Nama",
+    "input_phone": "Nomor Telepone",
+    "next_button": "Selanjutnya"
+  },
+  "gift_result": {
+    "title": "Kalkulasi Hadiah",
+    "description": "Berikut kalkulasi arisan",
+    "winner_count": "Jumlah Pemenang",
+    "member_count": "Jumlah Member",
+    "payment_term": "Jangka Pembayaran",
+    "dues": "Iuran Arisan",
+    "management_fee": "Biaya Pengelola",
+    "prize_winner": "Hadiah Pemenang",
+    "next_button": "Selanjutnya"
+  },
+  "create_pin_admin": {
+    "title": "Buat Pin",
+    "description": "Buat pin untuk masuk ke dalam aplikasi nantinya.",
+    "next_button": "Selanjutnya"
+  },
+  "home": {
+    "dashboard": {
+      "title": "Dasbor",
+      "winners": "Pemenang",
+      "member_count": "Jumlah Member",
+      "table": {
+        "title": "Tabel Member",
+        "no": "No",
+        "name": "Nama",
+        "telephone": "Telepon",
+        "winners_ke": "Pemenang Ke"
+      }
+    },
+    "table": {
+      "title": "Tabel",
+      "description": "Berikut tabel arisan",
+      "select": "Arisan Ke",
+      "column": {
+        "no": "No",
+        "name": "Nama",
+        "telephone": "Telepon",
+        "status": "Status"
+      },
+      "win": "Menang",
+      "not_win": "Belum Menang",
+      "has_been_vote": "telah diundi",
+      "vote_button": "Undi Pemenang",
+      "dialog": {
+        "confirm": {
+          "title": "Apakah anda ingin mengundi pemenang arisan ini",
+          "cancel": "Tidak",
+          "ok": "Ya"
+        },
+        "loading_search": "mencari pemenang",
+        "winner": {
+          "title": "Pemenang Arisan",
+          "arisan_ke": "Arisan Ke",
+          "close": "Tutup"
+        }
+      }
+    },
+    "history": {
+      "title": "Histori",
+      "description": "Berikut histori aktivitas di aplikasi.",
+      "sort": "Urutkan",
+      "empty_text": "histori kosong",
+      "have_paid": "telah membayar arisan",
+      "language_change_text": "Bahasa telah diubah ke",
+      "has_winner_text": "telah memenangkan arisan ke"
+    },
+    "setting": {
+      "title": "Pengaturan",
+      "language": "Bahasa",
+      "logout": "Keluar",
+      "logout_text": "Aksi ini akan menghapus semua data arisan, silakan expor data sebelum keluar."
+    }
   }
 }

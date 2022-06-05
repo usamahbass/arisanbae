@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Dialog,
   AppBar,
@@ -31,6 +32,7 @@ type SettingViewProps = {
 };
 
 const SettingViews = ({ isOpen, handleClose }: SettingViewProps) => {
+  const { t, i18n } = useTranslation();
   const { state, dispatch } = useContext(ArisanContext);
 
   const handleLogout = () => {
@@ -65,7 +67,7 @@ const SettingViews = ({ isOpen, handleClose }: SettingViewProps) => {
             <CloseIcon />
           </IconButton>
           <Typography sx={{ ml: 2, flex: 1 }} fontSize="1.1rem">
-            Pengaturan
+            {t("home.setting.title")}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -73,23 +75,24 @@ const SettingViews = ({ isOpen, handleClose }: SettingViewProps) => {
       <List>
         <ListItem>
           <ListItemText
-            primary="Bahasa"
+            primary={t("home.setting.language")}
             secondary={
               LANGUAGE.find((lang) => lang.alias === state.language)?.name
             }
           />
 
           <NativeSelect
-            defaultValue={state?.language}
+            defaultValue={state?.language?.toLowerCase()}
             inputProps={{
               name: "language",
               id: "setting-language",
             }}
             onChange={(event) => {
+              i18n.changeLanguage(event.target.value);
               dispatch(changeLanguage(event.target.value));
 
               const payloadHistory: ArisanHistoryType = {
-                name: `Bahasa telah diubah ke ${
+                name: `${t("home.history.language_change_text")} ${
                   LANGUAGE.find((lang) => lang.alias === event.target.value)
                     ?.name
                 }`,
@@ -110,8 +113,8 @@ const SettingViews = ({ isOpen, handleClose }: SettingViewProps) => {
 
         <ListItem button onClick={handleLogout}>
           <ListItemText
-            primary="Keluar"
-            secondary="Aksi ini akan menghapus semua data arisan, silakan export data sebelum keluar."
+            primary={t("home.setting.logout")}
+            secondary={t("home.setting.logout_text")}
           />
         </ListItem>
 

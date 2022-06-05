@@ -6,6 +6,7 @@ import {
   DialogActions,
   DialogContentText,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import TransitionSlide from "./slide-transition";
 
 type ConfirmDialogType = {
@@ -23,6 +24,8 @@ const ConfirmDialog = ({
   description,
   handleConfirm,
 }: ConfirmDialogType) => {
+  const { t } = useTranslation();
+
   return (
     <Dialog
       open={isOpen}
@@ -44,7 +47,7 @@ const ConfirmDialog = ({
       </DialogContent>
       <DialogActions>
         <Button variant="contained" color="error" onClick={handleClose}>
-          Tidak
+          {t("home.table.dialog.confirm.cancel")}
         </Button>
         <Button
           color="info"
@@ -52,7 +55,7 @@ const ConfirmDialog = ({
           onClick={handleConfirm}
           autoFocus
         >
-          Ya
+          {t("home.table.dialog.confirm.ok")}
         </Button>
       </DialogActions>
     </Dialog>

@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { Slide, Box, Stack, Typography, Button } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import Helmet from "react-helmet";
 import { useSlide } from "hooks/useSlide";
 import { ArisanContext } from "context/context";
 import { changeCurrentRoutes, changePreviousRoutes } from "context/action";
@@ -30,6 +32,7 @@ const StackResult = ({ title, result }: StackResultProps) => (
 const GiftResult = () => {
   const isSlide = useSlide();
 
+  const { t } = useTranslation();
   const { state, dispatch } = useContext(ArisanContext);
 
   const arisanGiftFunction = () => {
@@ -55,36 +58,44 @@ const GiftResult = () => {
 
   return (
     <ArisanLayout isScreen>
+      <Helmet title={t("gift_result.title")} />
+
       <Slide direction="left" in={isSlide}>
         <Box>
           <Stack spacing={1} mt="1rem">
-            <Typography fontSize="1.5rem">Kalkulasi Hadiah</Typography>
+            <Typography fontSize="1.5rem">{t("gift_result.title")}</Typography>
             <Typography variant="body2">
-              Berikut kalkulasi arisan {state.arisan?.name}.
+              {t("gift_result.description")} {state.arisan?.name}.
             </Typography>
           </Stack>
 
           <Box marginTop="4rem" display="flex" justifyContent="start">
             <Stack spacing={3}>
               <StackResult
-                title="Jumlah Pemenang"
+                title={t("gift_result.winner_count")}
                 result={state?.arisan?.winners_count}
               />
               <StackResult
-                title="Jumlah Member"
+                title={t("gift_result.member_count")}
                 result={state?.arisan?.members?.length}
               />
               <StackResult
-                title="Jangka Pembayaran"
+                title={t("gift_result.payment_term")}
                 result={changePaymentTerm(state?.arisan?.payment_term)}
               />
-              <StackResult title="Iuran Arisan" result={toRupiah(state?.arisan?.dues)} />
               <StackResult
-                title="Biaya Pengelola"
+                title={t("gift_result.dues")}
+                result={toRupiah(state?.arisan?.dues)}
+              />
+              <StackResult
+                title={t("gift_result.management_fee")}
                 result={toRupiah(state?.arisan?.administrator?.wages)}
               />
 
-              <StackResult title="Hadiah Pemenang" result={arisanGiftResult} />
+              <StackResult
+                title={t("gift_result.prize_winner")}
+                result={arisanGiftResult}
+              />
             </Stack>
           </Box>
 
@@ -103,7 +114,7 @@ const GiftResult = () => {
               width: "92%",
             }}
           >
-            Selanjutnya
+            {t("gift_result.next_button")}
           </Button>
         </Box>
       </Slide>

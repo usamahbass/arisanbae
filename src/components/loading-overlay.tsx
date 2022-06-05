@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Backdrop, CircularProgress, Stack, Typography } from "@mui/material";
 
 type LoadingOverlayProps = {
@@ -6,6 +7,8 @@ type LoadingOverlayProps = {
 };
 
 const LoadingOverlay = ({ isOpen, handleClose }: LoadingOverlayProps) => {
+  const { t } = useTranslation();
+
   return (
     <Backdrop
       sx={{
@@ -17,7 +20,7 @@ const LoadingOverlay = ({ isOpen, handleClose }: LoadingOverlayProps) => {
     >
       <Stack alignItems="center" direction="row" spacing={3}>
         <CircularProgress color="inherit" />
-        <Typography variant="body2">mencari pemenang...</Typography>
+        <Typography variant="body2">{`${t("home.table.dialog.loading_search")}...`}</Typography>
       </Stack>
     </Backdrop>
   );

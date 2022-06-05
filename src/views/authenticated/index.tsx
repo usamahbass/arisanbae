@@ -8,6 +8,7 @@ import {
   Tooltip,
   Slide,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import Helmet from "react-helmet";
 import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";
@@ -37,6 +38,7 @@ import History from "./history";
 import InsightTable from "./insight-table";
 
 const AuthenticatedPages = () => {
+  const { t } = useTranslation();
   const { width, height } = useWindowSize();
   const { state, dispatch } = useContext(ArisanContext);
 
@@ -123,7 +125,9 @@ const AuthenticatedPages = () => {
       // setHistory
       isWinners.map((isWinner: ArisanMemberTypes) => {
         const isHistory: ArisanHistoryType = {
-          name: `${isWinner.name} telah memenangkan arisan ke ${state?.arisan?.arisan_ke}`,
+          name: `${isWinner.name} ${t("home.history.has_winner_text")} ${
+            state?.arisan?.arisan_ke
+          }`,
           date: new Date(),
         };
 
@@ -179,7 +183,7 @@ const AuthenticatedPages = () => {
               {state?.arisan?.administrator?.manager}
             </Typography>
 
-            <Tooltip title="Pengaturan">
+            <Tooltip title={t("home.setting.title")}>
               <IconButton
                 sx={{ position: "absolute", right: 10 }}
                 onClick={() => setOpenSetting(true)}
@@ -240,7 +244,7 @@ const AuthenticatedPages = () => {
           description=""
           isOpen={openModalConfirmVote}
           handleConfirm={handleVoteArisan}
-          title="Apakah anda ingin mengundi pemenang arisan ini?"
+          title={`${t("home.table.dialog.confirm.title")}?`}
           handleClose={() => setOpenModalConfirmVote(false)}
         />
 

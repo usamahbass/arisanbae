@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import {
   DataGrid,
   GridRowsProp,
@@ -34,6 +35,7 @@ type TableProps = {
 };
 
 const Table = ({ handleVoteWinner }: TableProps) => {
+  const { t } = useTranslation();
   const { state, dispatch } = useContext(ArisanContext);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -45,25 +47,25 @@ const Table = ({ handleVoteWinner }: TableProps) => {
   const columns: GridColDef[] = [
     {
       field: "id",
-      headerName: "No",
+      headerName: t("home.table.column.no"),
       width: 150,
       valueGetter: (params: GridValueGetterParams) => `${params.row.id}.`,
     },
     {
       field: "name",
-      headerName: "Nama",
+      headerName: t("home.table.column.name"),
       width: 150,
       editable: true,
       groupable: true,
     },
     {
       field: "telp",
-      headerName: "Telepon",
+      headerName: t("home.table.column.telephone"),
       width: 150,
     },
     {
       field: "status",
-      headerName: "Status",
+      headerName: t("home.table.column.status"),
       width: 150,
       renderCell: (params: GridRenderCellParams) => {
         const isWinner = state.arisan.members.find(
@@ -73,7 +75,7 @@ const Table = ({ handleVoteWinner }: TableProps) => {
           <Chip
             sx={{ color: "white" }}
             color={isWinner ? "primary" : "error"}
-            label={isWinner ? "Menang" : "Belum Menang"}
+            label={isWinner ? t("home.table.win") : t("home.table.not_win")}
           />
         );
       },
@@ -108,15 +110,15 @@ const Table = ({ handleVoteWinner }: TableProps) => {
     <Stack mt={5} spacing={5}>
       <Stack direction="row" justifyContent="space-between">
         <Stack>
-          <Typography fontSize="1.2rem">Tabel Arisan</Typography>
+          <Typography fontSize="1.2rem">{t("home.table.title")}</Typography>
           <Typography color="#333" fontWeight={400} fontSize=".85rem">
-            Berikut tabel arisan {state?.arisan?.name}.
+            {t("home.table.description")} {state?.arisan?.name}.
           </Typography>
         </Stack>
 
         <FormControl sx={{ width: "30%" }}>
           <InputLabel variant="standard" htmlFor="arisan-ke">
-            Arisan Ke
+            {t("home.table.select")}
           </InputLabel>
 
           <NativeSelect
@@ -150,7 +152,9 @@ const Table = ({ handleVoteWinner }: TableProps) => {
           <EmptyState
             sx={{ marginTop: "1rem" }}
             image={EmptyImage}
-            text={`arisan ${state?.arisan?.arisan_ke} telah diundi.`}
+            text={`arisan ${state?.arisan?.arisan_ke} ${t(
+              "home.table.has_been_vote"
+            )}.`}
           />
         ) : (
           <DataGrid
@@ -167,7 +171,11 @@ const Table = ({ handleVoteWinner }: TableProps) => {
                     historyPayload = [
                       ...historyPayload,
                       {
-                        name: `${member.name} telah membayar arisan`,
+                        name: `${member.name} ${t(
+                          "home.history.have_paid"
+                        )} ${t("home.table.select")} ${
+                          state?.arisan?.arisan_ke
+                        }`,
                         date: new Date(),
                       },
                     ];
@@ -220,7 +228,7 @@ const Table = ({ handleVoteWinner }: TableProps) => {
         )}
       </div>
 
-      <Tooltip title="Undi Pemenang" onClick={handleVoteWinner}>
+      <Tooltip title={t("home.table.vote_button")} onClick={handleVoteWinner}>
         <Fab
           color="primary"
           sx={{ color: "white" }}

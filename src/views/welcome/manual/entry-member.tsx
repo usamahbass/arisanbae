@@ -7,6 +7,7 @@ import {
   Button,
   TextField,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { useForm, Controller } from "react-hook-form";
 import Helmet from "react-helmet";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -33,6 +34,7 @@ type ValuesType = {
 const EntryMemberPages = () => {
   const isSlide = useSlide();
 
+  const { t } = useTranslation();
   const { state, dispatch } = useContext(ArisanContext);
 
   const {
@@ -59,8 +61,6 @@ const EntryMemberPages = () => {
       members
     );
 
-    console.log(arisanSchedule, "HERE");
-
     dispatch(setArisanMembers(members));
     dispatch(setArisanSchedule(arisanSchedule));
     dispatch(changePreviousRoutes(state?.currentRoutes));
@@ -69,7 +69,7 @@ const EntryMemberPages = () => {
 
   return (
     <ArisanLayout isScreen>
-      <Helmet title="Isi Member - Arisan" />
+      <Helmet title={t("entry_member.title")} />
 
       <Slide in={isSlide} direction="left">
         <Box>
@@ -77,10 +77,11 @@ const EntryMemberPages = () => {
 
           <Stack ml=".75rem" spacing={4}>
             <Stack spacing={1} mt="1rem">
-              <Typography fontSize="1.5rem">Isi Member</Typography>
+              <Typography fontSize="1.5rem">
+                {t("entry_member.title")}
+              </Typography>
               <Typography variant="body2">
-                Silakan isi member sesuai jumlah member yang telah ditentukan
-                diawal.
+                {t("entry_member.description")}
               </Typography>
             </Stack>
 
@@ -110,9 +111,9 @@ const EntryMemberPages = () => {
                           render={({ field: { onChange, value } }) => (
                             <TextField
                               fullWidth
-                              label="Nama"
                               value={value}
                               variant="standard"
+                              label={t("entry_member.input_name")}
                               onChange={(e) => onChange(e.target.value)}
                             />
                           )}
@@ -123,7 +124,7 @@ const EntryMemberPages = () => {
                           name={`member[${idx}].telp`}
                           control={control}
                           setValue={setValue}
-                          label="Nomor Telepon"
+                          label={t("entry_member.input_phone")}
                         />
                       </Stack>
                     </Box>
@@ -146,7 +147,7 @@ const EntryMemberPages = () => {
                   width: "88%",
                 }}
               >
-                Selanjutnya
+                {t("entry_member.next_button")}
               </Button>
             </form>
           </Stack>

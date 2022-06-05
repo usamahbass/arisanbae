@@ -12,15 +12,15 @@ import "./css/index.css";
 
 render(
   <StrictMode>
-    <Theme>
-      <Store>
+    <Store>
+      <Theme>
         <Suspense fallback={<LoadingGlobal />}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <App />
           </LocalizationProvider>
         </Suspense>
-      </Store>
-    </Theme>
+      </Theme>
+    </Store>
   </StrictMode>,
   document.getElementById("root")
 );

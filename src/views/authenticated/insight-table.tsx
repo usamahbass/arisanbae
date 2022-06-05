@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Stack, Typography } from "@mui/material";
 import {
   DataGrid,
@@ -9,6 +10,7 @@ import {
 import { ArisanContext } from "context/context";
 
 const InsightTable = () => {
+  const { t } = useTranslation();
   const { state } = useContext(ArisanContext);
 
   const rows: GridRowsProp = state?.arisan?.members;
@@ -18,26 +20,28 @@ const InsightTable = () => {
   const columns: GridColDef[] = [
     {
       field: "id",
-      headerName: "No",
+      headerName: t("home.dashboard.table.no"),
       width: 150,
       valueGetter: (params: GridValueGetterParams) => `${params.row.id}.`,
     },
     {
       field: "name",
-      headerName: "Nama",
+      headerName: t("home.dashboard.table.name"),
       width: 150,
       editable: true,
       groupable: true,
     },
     {
       field: "telp",
-      headerName: "Telepon",
+      headerName: t("home.dashboard.table.telephone"),
       width: 150,
     },
     {
-      field: "winner_ke",
-      headerName: "Pemenang Ke",
+      field: "",
+      headerName: t("home.dashboard.table.winners_ke"),
       width: 150,
+      valueGetter: (params: GridValueGetterParams) =>
+        params.row.winner_ke ?? "-",
     },
   ];
 
@@ -52,7 +56,9 @@ const InsightTable = () => {
   return (
     <Stack mt={5} spacing={5}>
       <Stack>
-        <Typography fontSize="1.2rem">Tabel Member</Typography>
+        <Typography fontSize="1.2rem">
+          {t("home.dashboard.table.title")}
+        </Typography>
       </Stack>
 
       <div style={{ height: 300, width: "100%" }}>
@@ -61,11 +67,6 @@ const InsightTable = () => {
           columns={columns}
           loading={isLoading}
           hideFooterSelectedRowCount
-          componentsProps={{
-            pagination: {
-              labelRowsPerPage: "Baris per halaman",
-            },
-          }}
         />
       </div>
     </Stack>

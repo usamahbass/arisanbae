@@ -11,6 +11,7 @@ import {
   FormControl,
   InputLabel,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import Helmet from "react-helmet";
 import {
   changeCurrentRoutes,
@@ -43,9 +44,14 @@ const CreateProfile = () => {
     formState: { errors },
   } = useForm();
 
+  const { t } = useTranslation();
+
   const isSlide = useSlide();
   const watchPaymentTermType = watch("payment_term.type", null);
-  const termName = watchPaymentTermType === "day" ? "Hari" : "Bulan";
+  const termName =
+    watchPaymentTermType === "day"
+      ? t("create_profile_admin.day")
+      : t("create_profile_admin.month");
 
   const watchMemberCount = useWatch({ name: "member_count", control });
   const watchWinnerCount = useWatch({ name: "winners_count", control });
@@ -87,15 +93,13 @@ const CreateProfile = () => {
 
     if (isNotValidWinner) {
       setError("winners_count", {
-        message:
-          "Tidak dapat mengkalkulasi pemenang, harap masukan pemenang yang benar.",
+        message: t("create_profile_admin.error_input_six"),
       });
     }
 
     if (isOddMemberCount && !isOdd(watchWinnerCount)) {
       setError("winners_count", {
-        message:
-          "Tidak dapat mengkalkulasi pemenang, harap masukan pemenang yang benar.",
+        message: t("create_profile_admin.error_input_six"),
       });
     }
 
@@ -119,16 +123,18 @@ const CreateProfile = () => {
 
   return (
     <ArisanLayout isScreen>
-      <Helmet title="Daftar - Arisan" />
+      <Helmet title={t("create_profile_admin.title")} />
       <Slide in={isSlide} direction="left">
         <Box>
           <HeaderBack />
 
           <Stack ml=".75rem" spacing={4}>
             <Stack spacing={1} mt="1rem">
-              <Typography fontSize="1.5rem">Buat Arisan Baru</Typography>
+              <Typography fontSize="1.5rem">
+                {t("create_profile_admin.title")}
+              </Typography>
               <Typography variant="body2">
-                Lengkapi data arisan kamu di bawah ini, ya
+                {t("create_profile_admin.description")}
               </Typography>
             </Stack>
 
@@ -145,12 +151,15 @@ const CreateProfile = () => {
                   render={({ field: { onChange, value } }) => (
                     <TextField
                       size="medium"
-                      label="Nama Arisan"
+                      label={t("create_profile_admin.input_one")}
                       variant="standard"
                       value={value}
                       sx={{ fontWeight: 400, color: "#333" }}
                       error={errors?.arisan_name}
-                      helperText={errors?.arisan_name && "Masukkan nama arisan"}
+                      helperText={
+                        errors?.arisan_name &&
+                        t("create_profile_admin.error_input_one")
+                      }
                       defaultValue={state?.arisan?.name}
                       onChange={({ target: { value: valueInput } }) =>
                         onChange(valueInput)
@@ -167,12 +176,15 @@ const CreateProfile = () => {
                   render={({ field: { onChange, value } }) => (
                     <TextField
                       size="medium"
-                      label="Pengelola"
+                      label={t("create_profile_admin.input_two")}
                       variant="standard"
                       value={value}
                       sx={{ fontWeight: 400 }}
                       error={errors?.manager}
-                      helperText={errors?.manager && "Masukkan pengelola"}
+                      helperText={
+                        errors?.manager &&
+                        t("create_profile_admin.error_input_two")
+                      }
                       defaultValue={state?.arisan?.administrator?.manager}
                       onChange={({ target: { value: valueInput } }) =>
                         onChange(valueInput)
@@ -188,7 +200,7 @@ const CreateProfile = () => {
                   render={({ field: { onChange, value } }) => (
                     <TextField
                       size="medium"
-                      label="Upah Pengelola"
+                      label={t("create_profile_admin.input_three")}
                       variant="standard"
                       value={value}
                       sx={{ fontWeight: 400 }}
@@ -201,8 +213,8 @@ const CreateProfile = () => {
                       }}
                       helperText={
                         errors?.wages
-                          ? "Masukkan pengelola"
-                          : "upah setiap dilakukan pengundingan."
+                          ? t("create_profile_admin.error_input_three")
+                          : t("create_profile_admin.helper_input_three")
                       }
                     />
                   )}
@@ -215,7 +227,7 @@ const CreateProfile = () => {
                   render={({ field: { onChange, value } }) => (
                     <TextField
                       size="medium"
-                      label="Iuran Arisan"
+                      label={t("create_profile_admin.input_four")}
                       variant="standard"
                       value={value}
                       sx={{ fontWeight: 400 }}
@@ -226,7 +238,10 @@ const CreateProfile = () => {
                       InputProps={{
                         inputComponent: PriceInput,
                       }}
-                      helperText={errors?.dues && "Masukkan iuran arisan"}
+                      helperText={
+                        errors?.dues &&
+                        t("create_profile_admin.error_input_four")
+                      }
                     />
                   )}
                 />
@@ -240,7 +255,7 @@ const CreateProfile = () => {
                     <TextField
                       size="medium"
                       type="number"
-                      label="Jumlah orang yang ikut"
+                      label={t("create_profile_admin.input_five")}
                       variant="standard"
                       value={value}
                       sx={{
@@ -250,7 +265,7 @@ const CreateProfile = () => {
                       error={errors?.member_count}
                       helperText={
                         errors?.member_count &&
-                        "Masukkan jumlah orang yang ikut"
+                        t("create_profile_admin.error_input_five")
                       }
                       defaultValue={state?.arisan?.member_count}
                       onChange={({ target: { value: valueInput } }) =>
@@ -271,12 +286,12 @@ const CreateProfile = () => {
                       size="medium"
                       type="number"
                       error={errors?.winners_count}
-                      label="Jumlah orang yang dapat"
+                      label={t("create_profile_admin.input_six")}
                       variant="standard"
                       value={value}
                       helperText={
                         errors?.winners_count?.message ??
-                        "Masukkan jumlah orang yang dapat"
+                        t("create_profile_admin.error_input_six")
                       }
                       sx={{
                         fontWeight: 400,
@@ -294,7 +309,7 @@ const CreateProfile = () => {
 
                 <FormControl>
                   <InputLabel variant="standard" htmlFor="payment_term_type">
-                    Tipe jangka iuran
+                    {t("create_profile_admin.input_seven")}
                   </InputLabel>
 
                   <Controller
@@ -310,8 +325,12 @@ const CreateProfile = () => {
                           id: "payment_term_type",
                         }}
                       >
-                        <option value="day">Hari</option>
-                        <option value="month">Bulan</option>
+                        <option value="day">
+                          {t("create_profile_admin.day")}
+                        </option>
+                        <option value="month">
+                          {t("create_profile_admin.month")}
+                        </option>
                       </NativeSelect>
                     )}
                   />
@@ -319,7 +338,7 @@ const CreateProfile = () => {
 
                 <FormControl>
                   <InputLabel variant="standard" htmlFor="payment_term_content">
-                    Jangka iuran ({termName})
+                    {t("create_profile_admin.input_eight")} {`(${termName})`}
                   </InputLabel>
 
                   <Controller
@@ -362,7 +381,7 @@ const CreateProfile = () => {
                   width: "88%",
                 }}
               >
-                Selanjutnya
+                {t("create_profile_admin.next_button")}
               </Button>
             </form>
           </Stack>

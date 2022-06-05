@@ -1,6 +1,8 @@
+import { idID as coreIdID } from "@mui/material/locale";
+import { getGridLocalization } from "@mui/x-data-grid/utils/getGridLocalization";
 import { GridLocaleText } from "types/theme/gridLocaleText";
 
-export const GRID_DEFAULT_LOCALE_TEXT: GridLocaleText = {
+const iDIDLocaleText: GridLocaleText = {
   // Root
   noRowsLabel: "Tidak ada baris",
   noResultsOverlayLabel: "Tidak ada hasil yang ditemukan.",
@@ -142,3 +144,8 @@ export const GRID_DEFAULT_LOCALE_TEXT: GridLocaleText = {
   // Row reordering text
   rowReorderingHeaderName: "Pengurutan ulang baris",
 };
+
+export const GRID_DEFAULT_LOCALE_TEXT = getGridLocalization(
+  iDIDLocaleText,
+  coreIdID
+);

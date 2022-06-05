@@ -6,5 +6,107 @@
     "manual_button": "Don't have files? Create manual",
     "footer_caption": "Insya Allah This social gathering application has followed the allowed rules, please read more",
     "footer_caption_link": "here"
+  },
+  "create_profile_admin": {
+    "title": "Create a New Arisan",
+    "description": "Complete your arisan data below, OK.",
+    "input_one": "Arisan Name",
+    "error_input_one": "Enter the name of the gathering",
+    "input_two": "Manager",
+    "error_input_two": "Enter manager",
+    "input_three": "Manager's Wages",
+    "error_input_three": "Enter manager wages",
+    "helper_input_three": "wages for every negotiation.",
+    "input_four": "Arisan Fee",
+    "error_input_four": "Enter the social gathering fee",
+    "input_five": "Number of people participating",
+    "error_input_five": "Enter the number of people participating",
+    "input_six": "Number of people who can",
+    "error_input_six": "Unable to calculate the winner, please enter the correct winner",
+    "input_seven": "Contribution term type",
+    "input_eight": "Contribution Term",
+    "day": "Day",
+    "month": "Month",
+    "next_button": "Next"
+  },
+  "entry_member": {
+    "title": "Member Content",
+    "description": "Please fill in the member according to the number of members that have been determined at the beginning.",
+    "input_name": "Name",
+    "input_phone": "Phone number",
+    "next_button": "Next"
+  },
+  "gift_result": {
+    "title": "Prize Calculation",
+    "description": "Here's the Prize Calculation",
+    "winner_count": "Number of Winners",
+    "member_count": "Number of Members",
+    "payment_term": "Payment Term",
+    "dues": "Arisan Fee",
+    "management_fee": "Management Fee",
+    "prize_winner": "Winner Prize",
+    "next_button": "Next"
+  },
+  "create_pin_admin": {
+    "title": "Create Pin",
+    "description": "Create a pin to enter into the application later.",
+    "next_button": "Next"
+  },
+  "home": {
+    "dashboard": {
+      "title": "Dashboard",
+      "winners": "Winners",
+      "member_count": "Number of Members",
+      "table": {
+        "title": "Members Table",
+        "no": "No",
+        "name": "Name",
+        "telephone": "Phone",
+        "winners_ke": "Winner Ke"
+      }
+    },
+    "table": {
+      "title": "Table",
+      "description": "Here's the arisan table",
+      "select": "Arisan",
+      "column": {
+        "no": "No",
+        "name": "Name",
+        "telephone": "Phone",
+        "status": "Status"
+      },
+      "win": "Win",
+      "not_win": "Haven't Win yet",
+      "has_been_vote": "has been drawn",
+      "vote_button": "Draw Winner",
+      "dialog": {
+        "confirm": {
+          "title": "Do you want to draw the winner of this social gathering",
+          "cancel": "No",
+          "ok": "Yes"
+        },
+        "loading_search": "looking for a winner",
+        "winner": {
+          "title": "Arisan Winner",
+          "arisan_ke": "Arisan Ke",
+          "close": "Close"
+        }
+      }
+    },
+    "history": {
+      "title": "History",
+      "description": "Here's the activity history in the app.",
+      "sort": "Sort",
+      "empty_text": "empty history",
+      "have_paid": "paid arisan",
+      "has_winner_text": "has won the arisan to",
+      "language_change_text": "Language has been changed to"
+    },
+    "setting": {
+      "title": "Setting",
+      "language": "Language",
+      "logout": "Logout",
+      "logout_text": "This action will delete all social gathering data, please export the data before exiting."
+    }
   }
 }
