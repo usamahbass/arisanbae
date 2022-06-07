@@ -82,6 +82,10 @@ const WelcomePages = () => {
                 className={classes.btnImpor}
                 color="primary"
                 variant="contained"
+                onClick={() => {
+                  dispatch(changeCurrentRoutes(ROUTES_NAME.CREATE_WITH_IMPORT));
+                  dispatch(changePreviousRoutes(ROUTES_NAME.WELCOME));
+                }}
               >
                 {t("welcome.impor_button")}
               </Button>

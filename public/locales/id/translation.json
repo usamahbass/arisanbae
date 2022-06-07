@@ -1,4 +1,7 @@
 {
+  "words": {
+    "back": "Kembali"
+  },
   "welcome": {
     "title": "Selamat datang di ArisanBae !",
     "description": "Aplikasi untuk bantuin kamu yang ribet catat catat mengenai arisan. Buat member dan lakukan undian dimana pun.",

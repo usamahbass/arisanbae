@@ -27,10 +27,10 @@ import { createPaymentTermCount } from "helper/createPaymentTermCount";
 import type { AdministratorTypes } from "types/core/administrator";
 import type { ArisanTypes } from "types/core/arisan";
 import { convertPriceToInt } from "helper/convertPriceToInt";
+import { isOdd } from "helper/isOdd";
 import ArisanLayout from "layouts";
 import PriceInput from "components/price-input";
 import HeaderBack from "layouts/header-back";
-import { isOdd } from "helper/isOdd";
 
 const CreateProfile = () => {
   const { dispatch, state } = useContext(ArisanContext);

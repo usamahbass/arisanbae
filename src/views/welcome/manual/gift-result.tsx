@@ -10,24 +10,7 @@ import { changePaymentTerm } from "helper/changePaymentTerm";
 import { ROUTES_NAME } from "constants/routes";
 import { toRupiah } from "helper/toRupiah";
 import ArisanLayout from "layouts";
-
-type StackResultProps = {
-  title: string | any;
-  result: string | any;
-};
-
-const StackResult = ({ title, result }: StackResultProps) => (
-  <Stack direction="row" alignItems="center" spacing={3}>
-    <Typography variant="body2" width="150px">
-      {title}
-    </Typography>
-
-    <Typography variant="body2">:</Typography>
-    <Typography fontWeight="bold" variant="body2" width="150px">
-      {result}
-    </Typography>
-  </Stack>
-);
+import StackResult from "components/stack-result";
 
 const GiftResult = () => {
   const isSlide = useSlide();

@@ -1,14 +1,17 @@
 import { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import { Box, IconButton, Tooltip } from "@mui/material";
 import { ArisanContext } from "context/context";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { changeCurrentRoutes, changeNextRoutes } from "context/action";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const HeaderBack = () => {
+  const { t } = useTranslation();
   const { dispatch, state } = useContext(ArisanContext);
+
   return (
     <Box mb="1rem">
-      <Tooltip title="Kembali">
+      <Tooltip title={t("words.back")}>
         <IconButton
           onClick={() => {
             dispatch(changeCurrentRoutes(state?.previousRoutes));

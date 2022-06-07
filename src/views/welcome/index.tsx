@@ -6,6 +6,7 @@ import CreateProfile from "./manual/create-profile";
 import CreatePinPages from "./manual/create-pin";
 import EntryMemberPages from "./manual/entry-member";
 import GiftResult from "./manual/gift-result";
+import WithImporView from "./with-impor/with-impor-view";
 
 const WelcomeSwitch = () => {
   const { state } = useContext(ArisanContext);
@@ -21,6 +22,8 @@ const WelcomeSwitch = () => {
       return <GiftResult />;
     case ROUTES_NAME.CREATE_PIN_ADMIN:
       return <CreatePinPages />;
+    case ROUTES_NAME.CREATE_WITH_IMPORT:
+      return <WithImporView />;
     default:
       return <WelcomePages />;
   }
