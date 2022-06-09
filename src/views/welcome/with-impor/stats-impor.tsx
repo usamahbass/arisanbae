@@ -1,11 +1,27 @@
-import { useState } from "react";
-import { Box, Slide, Typography, Stack, Button } from "@mui/material";
-import StackResult from "components/stack-result";
+import { useContext, useState } from "react";
+import {
+  Box,
+  Slide,
+  Typography,
+  Stack,
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Avatar,
+} from "@mui/material";
 import { toRupiah } from "helper/toRupiah";
+import { stringAvatar } from "helper/stringAvatar";
 import { useSlide } from "hooks/useSlide";
+import { setAppData } from "context/action";
+import { ROUTES_NAME } from "constants/routes";
+import { getCurrentLanguage } from "helper/getCurrentLanguage";
+import { ArisanContext } from "context/context";
+import type { ArisanTypes } from "types/core/arisan";
+import StackResult from "components/stack-result";
 import ArisanLayout from "layouts";
 import HeaderBack from "layouts/header-back";
-import type { ArisanTypes } from "types/core/arisan";
 import ConfirmDialog from "components/confirm-dialog";
 
 type StatsImporProps = {
@@ -14,8 +30,22 @@ type StatsImporProps = {
 
 const StatsImpor = ({ arisanImpor }: StatsImporProps) => {
   const isSlide = useSlide();
+  const { dispatch } = useContext(ArisanContext);
 
   const [dialogMember, setDialogMember] = useState(false);
+
+  const handleStartArisan = () => {
+    const arisanData = {
+      arisan: arisanImpor,
+      auth: true,
+      nextRoutes: null,
+      previousRoutes: null,
+      currentRoutes: ROUTES_NAME.HOME,
+      language: getCurrentLanguage(),
+    };
+
+    dispatch(setAppData(arisanData));
+  };
 
   return (
     <ArisanLayout isScreen>
@@ -82,6 +112,7 @@ const StatsImpor = ({ arisanImpor }: StatsImporProps) => {
                 type="button"
                 color="primary"
                 variant="contained"
+                onClick={handleStartArisan}
                 sx={{
                   color: "white",
                   position: "absolute",
@@ -96,9 +127,36 @@ const StatsImpor = ({ arisanImpor }: StatsImporProps) => {
 
           <ConfirmDialog
             customActions
-            title={`Member Arisan ${arisanImpor?.name}`}
             isOpen={dialogMember}
+            description={
+              <List>
+                {arisanImpor?.members?.map((member) => (
+                  <ListItem alignItems="flex-start">
+                    <ListItemAvatar>
+                      <Avatar {...stringAvatar(member.name)} />
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={member.name}
+                      secondary={
+                        <>
+                          <Typography
+                            sx={{ display: "inline" }}
+                            component="span"
+                            variant="body2"
+                            color="text.primary"
+                          >
+                            {member.winner}
+                          </Typography>
+                          {`${member.telp}`}
+                        </>
+                      }
+                    />
+                  </ListItem>
+                ))}
+              </List>
+            }
             handleClose={() => setDialogMember(false)}
+            title={`Member Arisan ${arisanImpor?.name}`}
           >
             <Button color="error" onClick={() => setDialogMember(false)}>
               Tutup

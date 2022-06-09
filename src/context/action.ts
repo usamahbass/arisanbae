@@ -4,6 +4,7 @@ import type { ArisanTypes } from "types/core/arisan";
 import type { ArisanMemberTypes } from "types/core/member";
 import type { ArisanSchedule } from "types/core/schedule";
 import type { ArisanHistoryType } from "types/core/history";
+import type { initialStateType } from "./reducer";
 
 export const setArisanName = (arisanName: string) => ({
   type: TypesReducer.SET_ARISAN_NAME,
@@ -84,4 +85,9 @@ export const setListsArisanHistory = (
 ) => ({
   type: TypesReducer.SET_LISTS_ARISAN_HISTORY,
   payload: listsArisanHistory,
+});
+
+export const setAppData = (appData: initialStateType) => ({
+  type: TypesReducer.SET_APP_DATA,
+  payload: appData,
 });

@@ -95,6 +95,8 @@ export const reducer: Reducer<initialStateType | any, ReducerActionType> = (
       };
     case TypesReducer.SET_LISTS_ARISAN_HISTORY:
       return { ...state, arisan: { ...state.arisan, history: action.payload } };
+    case TypesReducer.SET_APP_DATA:
+      return action.payload;
     default:
       return state;
   }

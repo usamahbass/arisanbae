@@ -15,7 +15,7 @@ type ConfirmDialogType = {
   isOpen: boolean;
   handleClose: Function | any;
   title: string;
-  description?: string;
+  description?: string | ReactNode;
   handleConfirm?: Function | any;
   customActions?: boolean;
   children?: ReactNode;
@@ -49,7 +49,7 @@ const ConfirmDialog = ({
       >
         {title}
       </DialogTitle>
-      <DialogContent sx={{ marginTop: '1rem !important' }}>
+      <DialogContent sx={{ marginTop: "1rem !important" }}>
         <DialogContentText id="alert-dialog-description">
           {description}{" "}
         </DialogContentText>

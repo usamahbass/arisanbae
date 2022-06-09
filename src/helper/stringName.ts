@@ -1,4 +1,4 @@
-const stringToColor = (string: string) => {
+function stringToColor(string: string) {
   let hash = 0;
   let i;
 
@@ -16,15 +16,13 @@ const stringToColor = (string: string) => {
   /* eslint-enable no-bitwise */
 
   return color;
-};
+}
 
 export const stringAvatar = (name: string) => {
-  const isChildren = name.split(" ").length - 1;
-
   return {
     sx: {
       bgcolor: stringToColor(name),
     },
-    children: `${name.split(" ")[0][0]}`,
+    children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
   };
 };
