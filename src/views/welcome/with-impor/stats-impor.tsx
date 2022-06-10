@@ -10,7 +10,9 @@ import {
   ListItemText,
   ListItemAvatar,
   Avatar,
+  useTheme,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { toRupiah } from "helper/toRupiah";
 import { stringAvatar } from "helper/stringAvatar";
 import { useSlide } from "hooks/useSlide";
@@ -23,13 +25,16 @@ import StackResult from "components/stack-result";
 import ArisanLayout from "layouts";
 import HeaderBack from "layouts/header-back";
 import ConfirmDialog from "components/confirm-dialog";
+import PageTitle from "components/page-title";
 
 type StatsImporProps = {
   arisanImpor: ArisanTypes;
 };
 
 const StatsImpor = ({ arisanImpor }: StatsImporProps) => {
+  const theme = useTheme();
   const isSlide = useSlide();
+  const { t } = useTranslation();
   const { dispatch } = useContext(ArisanContext);
 
   const [dialogMember, setDialogMember] = useState(false);
@@ -38,6 +43,7 @@ const StatsImpor = ({ arisanImpor }: StatsImporProps) => {
     const arisanData = {
       arisan: arisanImpor,
       auth: true,
+      theme: theme.palette.mode,
       nextRoutes: null,
       previousRoutes: null,
       currentRoutes: ROUTES_NAME.HOME,
@@ -49,41 +55,50 @@ const StatsImpor = ({ arisanImpor }: StatsImporProps) => {
 
   return (
     <ArisanLayout isScreen>
+      <PageTitle title={`${arisanImpor.name} - ArisanBae`} />
       <Slide in={isSlide} direction="left">
         <Box>
           <HeaderBack />
 
           <Stack ml=".75rem" spacing={5}>
             <Stack spacing={1} mt="1rem">
-              <Typography fontSize="1.5rem">Statistik Impor</Typography>
+              <Typography fontSize="1.5rem">
+                {t("with_import.stats_title")}
+              </Typography>
               <Typography variant="body2">
-                Berikut statistik impor data.
+                {t("with_import.stats_title")}.
               </Typography>
             </Stack>
 
             <Stack spacing={3}>
-              <StackResult title="Nama" result={arisanImpor?.name} />
               <StackResult
-                title="Pengelola"
+                title={t("with_import.stats_name")}
+                result={arisanImpor?.name}
+              />
+              <StackResult
+                title={t("with_import.stats_manager")}
                 result={arisanImpor?.administrator?.manager}
               />
               <StackResult
-                title="Upah Pengelola"
+                title={t("with_import.stats_manager_wages")}
                 result={toRupiah(arisanImpor?.administrator?.wages)}
               />
               <StackResult
                 title="PIN"
                 result={arisanImpor?.administrator?.pin}
               />
-              <StackResult title="Iuran" result={toRupiah(arisanImpor?.dues)} />
               <StackResult
-                title="Jangka Pembayaran"
+                title={t("with_import.stats_dues")}
+                result={toRupiah(arisanImpor?.dues)}
+              />
+              <StackResult
+                title={t("with_import.stats_payment_term")}
                 result={`${arisanImpor?.payment_term?.content} ${
                   arisanImpor?.payment_term?.type === "month" ? "Bulan" : "Hari"
                 }`}
               />
               <StackResult
-                title="Jumlah Member"
+                title={t("with_import.stats_member_count")}
                 result={arisanImpor?.member_count}
               />
             </Stack>
@@ -103,7 +118,7 @@ const StatsImpor = ({ arisanImpor }: StatsImporProps) => {
                   width: "89%",
                 }}
               >
-                Lihat Member
+                {t("with_import.stats_see_member")}
               </Button>
 
               <Button
@@ -120,7 +135,7 @@ const StatsImpor = ({ arisanImpor }: StatsImporProps) => {
                   width: "89%",
                 }}
               >
-                Mulai
+                {t("with_import.stats_start")}
               </Button>
             </Stack>
           </Stack>
@@ -159,7 +174,7 @@ const StatsImpor = ({ arisanImpor }: StatsImporProps) => {
             title={`Member Arisan ${arisanImpor?.name}`}
           >
             <Button color="error" onClick={() => setDialogMember(false)}>
-              Tutup
+              {t("with_import.stats_close")}
             </Button>
           </ConfirmDialog>
         </Box>

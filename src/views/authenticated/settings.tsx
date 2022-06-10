@@ -12,6 +12,7 @@ import {
   Divider,
   NativeSelect,
   Button,
+  useTheme,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import fileDownload from "js-file-download";
@@ -38,6 +39,8 @@ type SettingViewProps = {
 const SettingViews = ({ isOpen, handleClose }: SettingViewProps) => {
   const { t, i18n } = useTranslation();
   const { state, dispatch } = useContext(ArisanContext);
+
+  const theme = useTheme();
 
   const [logoutDialog, setLogoutDialog] = useState(false);
 
@@ -78,9 +81,13 @@ const SettingViews = ({ isOpen, handleClose }: SettingViewProps) => {
       <AppBar
         sx={{
           position: "relative",
-          bgcolor: "white",
           boxShadow: 0,
           borderBottom: "1px solid #ccc",
+          backgroundImage:
+            theme.palette.mode === "dark"
+              ? "linear-gradient(rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.16))"
+              : "",
+          bgcolor: theme.palette.mode === "dark" ? "" : "white",
         }}
       >
         <Toolbar>

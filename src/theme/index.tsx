@@ -17,7 +17,10 @@ export const Theme: FC = ({ children }) => {
     () =>
       createTheme(
         {
-          palette: pallete,
+          palette: {
+            mode: state.theme,
+            ...pallete,
+          },
           components: overrides,
           typography: {
             button: {
@@ -46,7 +49,7 @@ export const Theme: FC = ({ children }) => {
         isLanguage,
         coreLanguage
       ),
-    [isLanguage, coreLanguage]
+    [isLanguage, coreLanguage, state.theme]
   );
 
   return (

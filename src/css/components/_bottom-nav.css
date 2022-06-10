@@ -12,6 +12,20 @@
     0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
 }
 
+.custom-bottom-navigation__dark {
+  position: fixed;
+  width: 450px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 10px;
+  border-radius: 10px;
+  background-color: rgb(24, 26, 27);
+  box-shadow: rgb(0 0 0 / 20%) 0px 3px 3px -2px,
+    rgb(0 0 0 / 14%) 0px 3px 4px 0px, rgb(0 0 0 / 12%) 0px 1px 8px 0px;
+}
+
 .custom-bottom-navigation ul {
   display: flex;
   width: 350px;

@@ -111,7 +111,7 @@ const Table = ({ handleVoteWinner }: TableProps) => {
       <Stack direction="row" justifyContent="space-between">
         <Stack>
           <Typography fontSize="1.2rem">{t("home.table.title")}</Typography>
-          <Typography color="#333" fontWeight={400} fontSize=".85rem">
+          <Typography color="secondary" fontWeight={400} fontSize=".85rem">
             {t("home.table.description")} {state?.arisan?.name}.
           </Typography>
         </Stack>

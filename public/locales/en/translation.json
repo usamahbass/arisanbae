@@ -1,6 +1,8 @@
 {
   "words": {
-    "back": "Back"
+    "back": "Back",
+    "theme_light": "Switch ke dark",
+    "theme_dark": "Switch to light"
   },
   "welcome": {
     "title": "Welcome to ArisanBae !",
@@ -114,5 +116,20 @@
       "logout": "Logout",
       "logout_text": "This action will delete all social gathering data, please export the data before exiting."
     }
+  },
+  "with_import": {
+    "title": "Arisan Import - ArisanBae",
+    "box_import_text": "Drag and drop the exported files here",
+    "stats_title": "Import Statistics",
+    "stats_description": "The following are data import statistics",
+    "stats_name": "Name",
+    "stats_manager": "Manager",
+    "stats_manager_wages": "Manager Wages",
+    "stats_dues": "Dues",
+    "stats_payment_term": "Payment Term",
+    "stats_member_count": "Member Count",
+    "stats_see_member": "See Member",
+    "stats_start": "Start",
+    "stats_close": "Close"
   }
 }

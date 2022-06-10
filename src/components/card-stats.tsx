@@ -11,16 +11,26 @@ const RootStyleWinner = styled(Card)(({ theme }) => ({
   boxShadow: "none",
   textAlign: "center",
   padding: theme.spacing(5, 0),
-  color: theme.palette.success.dark,
-  backgroundColor: theme.palette.success.light,
+  color:
+    theme.palette.mode === "dark"
+      ? "rgb(136, 246, 142)"
+      : theme.palette.success.dark,
+  backgroundColor:
+    theme.palette.mode === "dark"
+      ? "rgb(49, 73, 5)"
+      : theme.palette.success.light,
 }));
 
 const RootStyleMember = styled(Card)(({ theme }) => ({
   boxShadow: "none",
   textAlign: "center",
   padding: theme.spacing(5, 0),
-  color: theme.palette.info.dark,
-  backgroundColor: theme.palette.info.light,
+  color:
+    theme.palette.mode === "dark"
+      ? "rgb(132, 190, 251)"
+      : theme.palette.info.dark,
+  backgroundColor:
+    theme.palette.mode === "dark" ? "rgb(0, 57, 79)" : theme.palette.info.light,
 }));
 
 const IconWrapperStyleWinner = styled("div")(({ theme }) => ({
@@ -32,7 +42,10 @@ const IconWrapperStyleWinner = styled("div")(({ theme }) => ({
   height: theme.spacing(8),
   justifyContent: "center",
   marginBottom: theme.spacing(3),
-  color: theme.palette.success.dark,
+  color:
+    theme.palette.mode === "dark"
+      ? "rgb(136, 246, 142)"
+      : theme.palette.success.dark,
   backgroundImage: `linear-gradient(135deg, ${alpha(
     theme.palette.success.dark,
     0
@@ -48,7 +61,10 @@ const IconWrapperStyleMember = styled("div")(({ theme }) => ({
   height: theme.spacing(8),
   justifyContent: "center",
   marginBottom: theme.spacing(3),
-  color: theme.palette.info.dark,
+  color:
+    theme.palette.mode === "dark"
+      ? "rgb(132, 190, 251)"
+      : theme.palette.info.dark,
   backgroundImage: `linear-gradient(135deg, ${alpha(
     theme.palette.info.dark,
     0

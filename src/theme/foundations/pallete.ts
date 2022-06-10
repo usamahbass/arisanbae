@@ -5,8 +5,8 @@ export const pallete = {
     dark: "#1D6771",
   },
   secondary: {
-    main: "#465170",
-    dark: "#1F2F59",
+    main: "#333333",
+    dark: "#D8D4CF",
     light: "#E6EAF3",
   },
   warning: {

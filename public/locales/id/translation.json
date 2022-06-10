@@ -1,6 +1,8 @@
 {
   "words": {
-    "back": "Kembali"
+    "back": "Kembali",
+    "theme_light": "Ubah ke gelap",
+    "theme_dark": "Ubah ke terang"
   },
   "welcome": {
     "title": "Selamat datang di ArisanBae !",
@@ -114,5 +116,20 @@
       "logout": "Keluar",
       "logout_text": "Aksi ini akan menghapus semua data arisan, silakan expor data sebelum keluar."
     }
+  },
+  "with_import": {
+    "title": "Impor Arisan - ArisanBae",
+    "box_import_text": "Seret dan jatuhkan file yang telah diekspor disini",
+    "stats_title": "Statistik Impor",
+    "stats_description": "Berikut statistik impor data",
+    "stats_name": "Nama",
+    "stats_manager": "Pengelola",
+    "stats_manager_wages": "Upah Pengelola",
+    "stats_dues": "Iuran",
+    "stats_payment_term": "Jangka Pembayaran",
+    "stats_member_count": "Jumlah Member",
+    "stats_see_member": "Lihat Member",
+    "stats_start": "Mulai",
+    "stats_close": "Tutup"
   }
 }

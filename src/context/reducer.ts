@@ -1,10 +1,12 @@
 import { Reducer } from "react";
+import { PaletteMode } from "@mui/material";
 import { TypesReducer } from "./type";
 import type { ArisanTypes } from "types/core/arisan";
 
 export type initialStateType = {
   auth: boolean;
   arisan: ArisanTypes & any;
+  theme: PaletteMode | undefined | any;
   language: string;
   currentRoutes: null | string;
   previousRoutes: null | string;
@@ -14,6 +16,7 @@ export type initialStateType = {
 export const initialState = {
   auth: false,
   arisan: null,
+  theme: "dark",
   language: "ID",
   currentRoutes: null,
   previousRoutes: null,
@@ -97,6 +100,8 @@ export const reducer: Reducer<initialStateType | any, ReducerActionType> = (
       return { ...state, arisan: { ...state.arisan, history: action.payload } };
     case TypesReducer.SET_APP_DATA:
       return action.payload;
+    case TypesReducer.SET_THEME:
+      return { ...state, theme: action.payload };
     default:
       return state;
   }

@@ -31,6 +31,7 @@ import ArisanLayout from "layouts";
 import SettingViews from "./settings";
 import BottomNav from "./bottom-nav";
 import TableView from "./table";
+import ThemeToggle from "components/theme-toggle";
 import ModalWinner from "components/modal-winner";
 import ConfirmDialog from "components/confirm-dialog";
 import LoadingOverlay from "components/loading-overlay";
@@ -183,14 +184,19 @@ const AuthenticatedPages = () => {
               {state?.arisan?.administrator?.manager}
             </Typography>
 
-            <Tooltip title={t("home.setting.title")}>
-              <IconButton
-                sx={{ position: "absolute", right: 10 }}
-                onClick={() => setOpenSetting(true)}
-              >
-                <SettingIcon />
-              </IconButton>
-            </Tooltip>
+            <Stack direction="row" alignItems="center" spacing={10}>
+              <ThemeToggle isHome />
+
+              <Tooltip title={t("home.setting.title")}>
+                <IconButton
+                  color="inherit"
+                  sx={{ position: "absolute", right: 10 }}
+                  onClick={() => setOpenSetting(true)}
+                >
+                  <SettingIcon />
+                </IconButton>
+              </Tooltip>
+            </Stack>
           </Box>
 
           <Slide direction="left" in={valueNav === 0}>

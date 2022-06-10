@@ -1,4 +1,4 @@
-import { Icon } from "@mui/material";
+import { Icon, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import TableViewIcon from "@mui/icons-material/TableView";
@@ -18,6 +18,8 @@ type NavProps = {
 
 const BottomNav = ({ onChangeNav, navValue }: BottomNavProps) => {
   const { t } = useTranslation();
+
+  const theme = useTheme();
 
   const NAVS: NavProps[] = [
     {
@@ -43,7 +45,16 @@ const BottomNav = ({ onChangeNav, navValue }: BottomNavProps) => {
   ];
 
   return (
-    <div className="custom-bottom-navigation">
+    <div
+      className="custom-bottom-navigation"
+      style={{
+        backgroundColor: theme.palette.mode === "dark" ? "rgb(24, 26, 27)" : "",
+        boxShadow:
+          theme.palette.mode === "dark"
+            ? "rgb(0 0 0 / 20%) 0px 3px 3px -2px, rgb(0 0 0 / 14%) 0px 3px 4px 0px, rgb(0 0 0 / 12%) 0px 1px 8px 0px"
+            : "",
+      }}
+    >
       <ul>
         {NAVS.map((nav) => (
           <li
@@ -53,7 +64,13 @@ const BottomNav = ({ onChangeNav, navValue }: BottomNavProps) => {
             } `}
           >
             <a href="#">
-              <span className="custom-bottom-navigation-icon">
+              <span
+                className="custom-bottom-navigation-icon"
+                style={{
+                  color:
+                    theme.palette.mode === "dark" ? "rgb(209, 205, 199)" : "",
+                }}
+              >
                 <Icon component={nav.icon} />
               </span>
               <span className="custom-bottom-navigation-text">{nav.label}</span>
@@ -61,7 +78,14 @@ const BottomNav = ({ onChangeNav, navValue }: BottomNavProps) => {
           </li>
         ))}
 
-        <div className="custom-bottom-navigation-indicator" />
+        <div
+          className="custom-bottom-navigation-indicator"
+          style={{
+            backgroundColor:
+              theme.palette.mode === "dark" ? "rgb(50, 134, 124)" : "",
+            borderColor: theme.palette.mode === "dark" ? "rgb(48, 52, 54)" : "",
+          }}
+        />
       </ul>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import {
   Typography,
   Box,
@@ -21,6 +21,7 @@ import PageTitle from "components/page-title";
 import LogoArisan from "assets/png/icon.png";
 import IlustrationWelcome from "assets/svg/welcome.svg";
 import ChooseLanguage from "components/choose-language";
+import ThemeToggle from "components/theme-toggle";
 
 const WelcomePages = () => {
   const classes = useWelcomeStyles();
@@ -43,7 +44,9 @@ const WelcomePages = () => {
               <Typography className={classes.logoName}>ArisanBae</Typography>
             </Box>
 
-            <Box>
+            <Stack direction="row" alignItems="center">
+              <ThemeToggle />
+
               <IconButton
                 aria-label="choose-language"
                 onClick={() => setOpenChooseLanguage(true)}
@@ -60,7 +63,7 @@ const WelcomePages = () => {
                   {currentLanguage?.toUpperCase()}
                 </Avatar>
               </IconButton>
-            </Box>
+            </Stack>
           </Box>
 
           <Box mt="5rem" component="main">

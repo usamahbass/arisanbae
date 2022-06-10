@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Box, Slide } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { useTranslation } from "react-i18next";
 import { DropzoneArea } from "react-mui-dropzone";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { useSlide } from "hooks/useSlide";
 import ArisanLayout from "layouts";
 import HeaderBack from "layouts/header-back";
 import StatsImpor from "./stats-impor";
+import PageTitle from "components/page-title";
 
 const useDropzoneStyle = makeStyles(() => ({
   dropzoneContainer: {
@@ -26,6 +28,7 @@ const useDropzoneStyle = makeStyles(() => ({
 
 const WithImporView = () => {
   const isSlide = useSlide();
+  const { t } = useTranslation();
   const classes = useDropzoneStyle();
 
   const [dataImpor, setDataImpor] = useState<any>(null);
@@ -50,6 +53,8 @@ const WithImporView = () => {
 
   return (
     <ArisanLayout isScreen>
+      <PageTitle title={t("with_import.title")} />
+
       <Slide in={isSlide} direction="left">
         <Box>
           <HeaderBack />
@@ -57,11 +62,12 @@ const WithImporView = () => {
           <DropzoneArea
             filesLimit={1}
             Icon={UploadFileIcon}
+            showAlerts={false}
             acceptedFiles={[".json"]}
             showPreviewsInDropzone={false}
             dropzoneClass={classes.dropzoneContainer}
             dropzoneParagraphClass={classes.dropzoneTitle}
-            dropzoneText="Seret dan jatuhkan file yang telah diekspor disini"
+            dropzoneText={t("with_import.box_import_text")}
             onChange={(file) => {
               if (file?.length > 0) {
                 handleReaderFile(file);

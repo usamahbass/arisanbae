@@ -1,3 +1,4 @@
+import { PaletteMode } from "@mui/material";
 import { TypesReducer } from "./type";
 import type { AdministratorTypes } from "types/core/administrator";
 import type { ArisanTypes } from "types/core/arisan";
@@ -90,4 +91,9 @@ export const setListsArisanHistory = (
 export const setAppData = (appData: initialStateType) => ({
   type: TypesReducer.SET_APP_DATA,
   payload: appData,
+});
+
+export const setTheme = (theme: PaletteMode | undefined | any) => ({
+  type: TypesReducer.SET_THEME,
+  payload: theme,
 });
