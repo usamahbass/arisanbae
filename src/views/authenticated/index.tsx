@@ -151,7 +151,7 @@ const AuthenticatedPages = () => {
 
   useEffect(() => {
     dispatch(setArisanKe(1));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (valueNav === 3) {
