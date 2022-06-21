@@ -2,7 +2,7 @@
 
 [![Twitter: usamahbass](https://img.shields.io/twitter/follow/usamahbass.svg?style=social)](https://twitter.com/usamahbass)
 
-> Aplikasi untuk bantuin kamu yang ribet catat catat mengenai arisan. Buat member dan lakukan undian dimana pun.
+> Aplikasi untuk bantuin kamu yang ribet catat catat mengenai arisan. Buat member, export data arisan, import, dan lakukan undian dimana pun.
 
 ### ✨ [Demo](https://arisanbae.vercel.app)
 
