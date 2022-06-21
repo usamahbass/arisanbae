@@ -9,8 +9,9 @@
     "description": "Applications to help those of you who are complicated to take notes about social gathering. Create a member and do the lottery anywhere.",
     "impor_button": "File Import",
     "manual_button": "Don't have files? Create manual",
-    "footer_caption": "Insya Allah This social gathering application has followed the allowed rules, please read more",
-    "footer_caption_link": "here"
+    "footer_caption_link": "here",
+    "choose_lang_title": "Language choice",
+    "choose_lang_description": "What language do you want to use"
   },
   "create_profile_admin": {
     "title": "Create a New Arisan",

@@ -4,6 +4,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { Store } from "context/context";
 import { Theme } from "theme";
+import * as serviceWorker from "./serviceWorker";
 import App from "./App";
 import LoadingGlobal from "components/loading-global";
 import reportWebVitals from "./reportWebVitals";
@@ -24,6 +25,8 @@ render(
   </StrictMode>,
   document.getElementById("root")
 );
+
+serviceWorker.register();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

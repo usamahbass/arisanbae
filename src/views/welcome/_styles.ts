@@ -33,6 +33,7 @@ export const useWelcomeStyles = makeStyles({
     fontSize: ".75rem !important",
   },
   captionFooter: {
-    fontSize: ".6rem !important",
+    textAlign: 'center',
+    fontSize: "1rem !important",
   },
 });

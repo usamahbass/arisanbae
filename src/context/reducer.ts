@@ -102,6 +102,14 @@ export const reducer: Reducer<initialStateType | any, ReducerActionType> = (
       return action.payload;
     case TypesReducer.SET_THEME:
       return { ...state, theme: action.payload };
+    case TypesReducer.SET_WINNERS:
+      return {
+        ...state,
+        arisan: {
+          ...state.arisan,
+          winners: [...(state.arisan.winners ?? ""), action.payload],
+        },
+      };
     default:
       return state;
   }

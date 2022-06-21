@@ -8,6 +8,7 @@ import {
   GridValueGetterParams,
 } from "@mui/x-data-grid";
 import { ArisanContext } from "context/context";
+import { ArisanMemberTypes } from "types/core/member";
 
 const InsightTable = () => {
   const { t } = useTranslation();
@@ -41,7 +42,9 @@ const InsightTable = () => {
       headerName: t("home.dashboard.table.winners_ke"),
       width: 150,
       valueGetter: (params: GridValueGetterParams) =>
-        params.row.winner_ke ?? "-",
+        state.arisan?.winners?.findIndex(
+          (winner: ArisanMemberTypes) => winner.name === params.row.name
+        ) + 1 ?? "-",
     },
   ];
 

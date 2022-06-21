@@ -108,14 +108,14 @@ const WelcomePages = () => {
               </Button>
             </Stack>
 
-            <Box mt="5rem">
+            <Box mt="8rem">
               <Typography className={classes.captionFooter} variant="body2">
-                {t("welcome.footer_caption")}&nbsp;
+                &copy; 2022&nbsp;
                 <Link
-                  href="https://almanhaj.or.id/3818-arisan-dalam-pandangan-islam.html"
                   target="_blank"
+                  href="https://github.com/usamahbass/arisanbae"
                 >
-                  {t("welcome.footer_caption_link")}
+                  arisanbae
                 </Link>
               </Typography>
             </Box>

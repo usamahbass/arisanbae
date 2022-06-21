@@ -22,7 +22,7 @@ type ChooseLanguageProps = {
 };
 
 const ChooseLanguage = ({ isOpen, onClose, onOpen }: ChooseLanguageProps) => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { state, dispatch } = useContext(ArisanContext);
 
   return (
@@ -38,8 +38,12 @@ const ChooseLanguage = ({ isOpen, onClose, onOpen }: ChooseLanguageProps) => {
         </IconButton>
         <Stack padding="1rem" spacing={3}>
           <Stack spacing={1}>
-            <Typography variant="body1">Pilihan bahasa</Typography>
-            <Typography variant="body2">Mau pakai bahasa apa?</Typography>
+            <Typography variant="body1">
+              {t("welcome.choose_lang_title")}
+            </Typography>
+            <Typography variant="body2">
+              {t("welcome.choose_lang_description")}?
+            </Typography>
           </Stack>
 
           <RadioGroup

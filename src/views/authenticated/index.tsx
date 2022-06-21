@@ -24,6 +24,7 @@ import {
   setArisanHistory,
   setArisanSchedule,
   setArisanKeHasBeenVote,
+  setWinners as setArisanWinnersAction,
 } from "context/action";
 import { greetingFunc } from "helper/greetingFunc";
 import { pickRandomWinner } from "helper/pickRandomWinner";
@@ -90,7 +91,6 @@ const AuthenticatedPages = () => {
           const memberWinner: ArisanMemberTypes = {
             ...member,
             winner: true,
-            winner_ke: isLastWinnerKe,
           };
 
           return memberWinner;
@@ -142,6 +142,9 @@ const AuthenticatedPages = () => {
           ...state.arisan.schedule,
           [state.arisan.arisan_ke]: newArisanScheduleField,
         })
+      );
+      isWinners.map((winner: ArisanMemberTypes) =>
+        dispatch(setArisanWinnersAction(winner))
       );
     }, 1000);
   };

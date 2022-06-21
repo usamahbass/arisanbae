@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { Stack, Typography, FormControl, TextField } from "@mui/material";
 import {
@@ -17,6 +18,7 @@ import EmptyState from "components/empty-state";
 import EmptyImage from "assets/svg/empty.svg";
 
 const History = () => {
+  const { t } = useTranslation();
   const { state } = useContext(ArisanContext);
 
   const [filterValue, setFilterValue] = useState<any>(new Date());
@@ -33,9 +35,9 @@ const History = () => {
     <Stack mt={5} spacing={5}>
       <Stack direction="row" justifyContent="space-between">
         <Stack>
-          <Typography fontSize="1.2rem">Histori</Typography>
-          <Typography color="#333" fontWeight={400} fontSize=".85rem">
-            Berikut histori aktifitas di aplikasi.
+          <Typography fontSize="1.2rem">{t("home.history.title")}</Typography>
+          <Typography fontWeight={400} fontSize=".85rem">
+            {t("home.history.description")}
           </Typography>
         </Stack>
 
@@ -52,7 +54,10 @@ const History = () => {
         </FormControl>
       </Stack>
 
-      <Timeline position="alternate">
+      <Timeline
+        position="alternate"
+        style={{ height: "670px", overflow: "auto" }}
+      >
         {historyData?.length > 0 ? (
           historyData?.map((isHistory: ArisanHistoryType, idx: number) => (
             <TimelineItem key={`${isHistory.name}-${idx + 1}`}>

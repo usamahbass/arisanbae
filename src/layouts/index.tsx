@@ -13,7 +13,6 @@ const ArisanLayout = ({ children, isScreen }: ArisanLayoutProps) => {
   return (
     <>
       <Box
-        minHeight="100%"
         style={{
           backgroundColor: theme.palette.mode === "dark" ? "#1d1f20" : "",
         }}

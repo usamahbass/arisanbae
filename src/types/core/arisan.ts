@@ -16,4 +16,5 @@ export type ArisanTypes = {
   administrator: AdministratorTypes;
   members: Array<ArisanMemberTypes>;
   arisanKeHasBeenVote: number[];
+  winners: Array<ArisanMemberTypes>;
 };

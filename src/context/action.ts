@@ -97,3 +97,8 @@ export const setTheme = (theme: PaletteMode | undefined | any) => ({
   type: TypesReducer.SET_THEME,
   payload: theme,
 });
+
+export const setWinners = (arisanMember: ArisanMemberTypes) => ({
+  type: TypesReducer.SET_WINNERS,
+  payload: arisanMember,
+});

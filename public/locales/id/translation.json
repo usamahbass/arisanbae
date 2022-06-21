@@ -9,8 +9,9 @@
     "description": "Aplikasi untuk bantuin kamu yang ribet catat catat mengenai arisan. Buat member dan lakukan undian dimana pun.",
     "impor_button": "Impor File",
     "manual_button": "Ga punya file? Buat manual",
-    "footer_caption": "Insya Allah aplikasi arisan ini sudah mengikuti kaidah yang dibolehkan, selengkapnya silakan baca",
-    "footer_caption_link": "disini"
+    "footer_caption_link": "disini",
+    "choose_lang_title": "Pilihan bahasa",
+    "choose_lang_description": "Mau pakai bahasa apa"
   },
   "create_profile_admin": {
     "title": "Buat Arisan Baru",
