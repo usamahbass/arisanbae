@@ -137,7 +137,7 @@ const WelcomePages = () => {
 
       {supported() && !isInstalled && (
         <Snackbar
-          open={dialogState}
+          open={true}
           sx={{ maxWidth: "450px", width: "100%" }}
           anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
           message={
