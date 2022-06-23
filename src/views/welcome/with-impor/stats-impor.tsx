@@ -28,7 +28,7 @@ import ConfirmDialog from "components/confirm-dialog";
 import PageTitle from "components/page-title";
 
 type StatsImporProps = {
-  arisanImpor: ArisanTypes;
+  arisanImpor: ArisanTypes | undefined;
 };
 
 const StatsImpor = ({ arisanImpor }: StatsImporProps) => {
@@ -55,7 +55,7 @@ const StatsImpor = ({ arisanImpor }: StatsImporProps) => {
 
   return (
     <ArisanLayout isScreen>
-      <PageTitle title={`${arisanImpor.name} - ArisanBae`} />
+      <PageTitle title={`${arisanImpor?.name} - ArisanBae`} />
       <Slide in={isSlide} direction="left">
         <Box>
           <HeaderBack />
@@ -82,10 +82,6 @@ const StatsImpor = ({ arisanImpor }: StatsImporProps) => {
               <StackResult
                 title={t("with_import.stats_manager_wages")}
                 result={toRupiah(arisanImpor?.administrator?.wages)}
-              />
-              <StackResult
-                title="PIN"
-                result={arisanImpor?.administrator?.pin}
               />
               <StackResult
                 title={t("with_import.stats_dues")}

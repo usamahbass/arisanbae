@@ -3,7 +3,7 @@ import { ArisanContext } from "context/context";
 import { ROUTES_NAME } from "constants/routes";
 import WelcomePages from "./welcome";
 import CreateProfile from "./manual/create-profile";
-import CreatePinPages from "./manual/create-pin";
+// import CreatePinPages from "./manual/create-pin";
 import EntryMemberPages from "./manual/entry-member";
 import GiftResult from "./manual/gift-result";
 import WithImporView from "./with-impor/with-impor-view";
@@ -20,8 +20,8 @@ const WelcomeSwitch = () => {
       return <EntryMemberPages />;
     case ROUTES_NAME.GIFT_RESULT:
       return <GiftResult />;
-    case ROUTES_NAME.CREATE_PIN_ADMIN:
-      return <CreatePinPages />;
+    // case ROUTES_NAME.CREATE_PIN_ADMIN:
+    //   return <CreatePinPages />;
     case ROUTES_NAME.CREATE_WITH_IMPORT:
       return <WithImporView />;
     default:

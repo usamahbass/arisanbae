@@ -1,10 +1,11 @@
 import { StrictMode, Suspense } from "react";
 import { render } from "react-dom";
+import { SnackbarProvider } from "notistack";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { Store } from "context/context";
 import { Theme } from "theme";
-import * as serviceWorker from "./serviceWorker";
+import * as serviceWorker from "./serviceWorkerRegistration";
 import App from "./App";
 import LoadingGlobal from "components/loading-global";
 import reportWebVitals from "./reportWebVitals";
@@ -17,7 +18,9 @@ render(
       <Theme>
         <Suspense fallback={<LoadingGlobal />}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <App />
+            <SnackbarProvider maxSnack={3}>
+              <App />
+            </SnackbarProvider>
           </LocalizationProvider>
         </Suspense>
       </Theme>
