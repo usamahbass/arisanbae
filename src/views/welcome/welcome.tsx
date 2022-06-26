@@ -23,7 +23,7 @@ import LogoArisan from "assets/png/icon.png";
 import IlustrationWelcome from "assets/svg/welcome.svg";
 import ChooseLanguage from "components/choose-language";
 import ThemeToggle from "components/theme-toggle";
-import InstallButton from "components/install-button";
+// import InstallButton from "components/install-button";
 
 const WelcomePages = () => {
   const classes = useWelcomeStyles();
@@ -49,7 +49,7 @@ const WelcomePages = () => {
 
             <Stack direction="row" alignItems="center">
               <ThemeToggle />
-              <InstallButton />
+              {/* <InstallButton /> */}
 
               <IconButton
                 aria-label="choose-language"

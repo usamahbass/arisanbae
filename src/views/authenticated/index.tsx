@@ -38,7 +38,7 @@ import ConfirmDialog from "components/confirm-dialog";
 import LoadingOverlay from "components/loading-overlay";
 import History from "./history";
 import InsightTable from "./insight-table";
-import InstallButton from "components/install-button";
+// import InstallButton from "components/install-button";
 
 const AuthenticatedPages = () => {
   const { t } = useTranslation();
@@ -190,7 +190,7 @@ const AuthenticatedPages = () => {
 
             <Stack direction="row" alignItems="center" spacing={6}>
               <ThemeToggle />
-              <InstallButton isHome />
+              {/* <InstallButton isHome /> */}
 
               <Tooltip title={t("home.setting.title")}>
                 <IconButton
