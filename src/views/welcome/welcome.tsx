@@ -1,4 +1,4 @@
-import { useContext, useState, Fragment } from "react";
+import { useContext, useState, Fragment, useEffect } from "react";
 import {
   Typography,
   Box,
@@ -9,12 +9,11 @@ import {
   IconButton,
   Slide,
   Snackbar,
-  Alert,
 } from "@mui/material";
+import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
 import CloseIcon from "@mui/icons-material/Close";
 import { useWelcomeStyles } from "./_styles";
-import { usePWAInstall } from "hooks/usePWAInstall";
 import { getCurrentLanguage } from "helper/getCurrentLanguage";
 import { ArisanContext } from "context/context";
 import { changeCurrentRoutes, changePreviousRoutes } from "context/action";
@@ -31,13 +30,11 @@ const WelcomePages = () => {
   const classes = useWelcomeStyles();
   const currentLanguage = getCurrentLanguage();
   const { t } = useTranslation();
-  const { dialogState, handleInstall, supported, isInstalled } =
-    usePWAInstall(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   const { dispatch } = useContext(ArisanContext);
 
   const isSlide = useSlide();
-  const [openSnackbar, setOpenSnackbar] = useState(true);
   const [openChooseLanguage, setOpenChooseLanguage] = useState(false);
 
   return (
@@ -134,31 +131,6 @@ const WelcomePages = () => {
         isOpen={openChooseLanguage}
         onClose={() => setOpenChooseLanguage(false)}
       />
-
-      {supported() && !isInstalled && (
-        <Snackbar
-          open={true}
-          sx={{ maxWidth: "450px", width: "100%" }}
-          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-          message={
-            <Fragment>
-              <Typography variant="body1">
-                {t("snackbar_install.install")}
-              </Typography>
-              <Typography variant="caption">
-                {t("snackbar_install.install_description")}
-              </Typography>
-            </Fragment>
-          }
-          action={
-            <Fragment>
-              <Button color="secondary" size="small" onClick={handleInstall}>
-                {t("snackbar_install.install_button")}
-              </Button>
-            </Fragment>
-          }
-        />
-      )}
     </ArisanLayout>
   );
 };

@@ -136,6 +136,8 @@
   "snackbar_install": {
     "install": "Install",
     "install_description": "Menginstal hampir tidak menggunakan penyimpanan dan menyediakan cara cepat untuk kembali ke aplikasi ini",
-    "install_button": "Install Aplikasi"
+    "install_button": "Install Aplikasi",
+    "success_install": "Aplikasi berhasil diinstal atau instruksi untuk menginstal ditampilkan",
+    "failed_install": "Pengguna memilih untuk tidak menginstal"
   }
 }

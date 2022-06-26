@@ -28,6 +28,26 @@ input[type="number"] {
   font-size: 1rem !important;
 }
 
+.makeStyles-customDrawerPaper-1 {
+  background-color: #5dc3b2 !important;
+  right: 12px !important;
+  height: 370px !important;
+}
+
+.MuiTypography-h5 {
+  font-size: 1.1rem !important;
+}
+
+.makeStyles-customBtnInstall-2 {
+  color: #5dc3b2 !important;
+}
+
+.makeStyles-customBtnClose-3 {
+  background-color: #5dc3b2 !important;
+  color: white !important;
+  border: 1px solid white !important;
+}
+
 @media (max-width: 678px) {
   .custom-vote-button {
     left: 80% !important;
