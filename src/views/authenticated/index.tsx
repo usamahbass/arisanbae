@@ -38,6 +38,7 @@ import ConfirmDialog from "components/confirm-dialog";
 import LoadingOverlay from "components/loading-overlay";
 import History from "./history";
 import InsightTable from "./insight-table";
+import InstallButton from "components/install-button";
 
 const AuthenticatedPages = () => {
   const { t } = useTranslation();
@@ -187,8 +188,9 @@ const AuthenticatedPages = () => {
               {state?.arisan?.administrator?.manager}
             </Typography>
 
-            <Stack direction="row" alignItems="center" spacing={10}>
-              <ThemeToggle isHome />
+            <Stack direction="row" alignItems="center" spacing={6}>
+              <ThemeToggle />
+              <InstallButton isHome />
 
               <Tooltip title={t("home.setting.title")}>
                 <IconButton

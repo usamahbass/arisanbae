@@ -1,4 +1,4 @@
-import { useContext, useState, Fragment, useEffect } from "react";
+import { useContext, useState } from "react";
 import {
   Typography,
   Box,
@@ -8,11 +8,9 @@ import {
   Avatar,
   IconButton,
   Slide,
-  Snackbar,
 } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
-import CloseIcon from "@mui/icons-material/Close";
 import { useWelcomeStyles } from "./_styles";
 import { getCurrentLanguage } from "helper/getCurrentLanguage";
 import { ArisanContext } from "context/context";
@@ -25,6 +23,7 @@ import LogoArisan from "assets/png/icon.png";
 import IlustrationWelcome from "assets/svg/welcome.svg";
 import ChooseLanguage from "components/choose-language";
 import ThemeToggle from "components/theme-toggle";
+import InstallButton from "components/install-button";
 
 const WelcomePages = () => {
   const classes = useWelcomeStyles();
@@ -50,6 +49,7 @@ const WelcomePages = () => {
 
             <Stack direction="row" alignItems="center">
               <ThemeToggle />
+              <InstallButton />
 
               <IconButton
                 aria-label="choose-language"

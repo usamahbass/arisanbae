@@ -4,7 +4,16 @@
 
 > Aplikasi untuk bantuin kamu yang ribet catat catat mengenai arisan. Buat member, export data arisan, import, dan lakukan undian dimana pun.
 
-### ✨ [Demo](https://arisanbae.vercel.app)
+## Fitur
+
+- [x] Unlimited member
+- [x] Jumlah pemenang (genap)
+- [x] Ekspor data
+- [x] Impor data
+- [x] Mode Gelap
+- [x] Multiple bahasa
+- [x] PWA 
+- [ ] Arisan bercabang
 
 ## Author
 
