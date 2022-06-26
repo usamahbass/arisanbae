@@ -35,18 +35,22 @@ const InstallButton = ({ isHome }: InstallButtonProps) => {
       );
   };
 
-  return (
-    <Tooltip title={t("snackbar_install.install_button")}>
-      <IconButton
-        aria-label="install-app"
-        onClick={handleInstallApp}
-        disabled={!supported() && isInstalled()}
-        sx={{ ml: 1, position: "relative", right: isHome ? "40px" : "0" }}
-      >
-        {isAndroid ? <InstallMobileIcon /> : <InstallDesktopIcon />}
-      </IconButton>
-    </Tooltip>
-  );
+  if (supported()) {
+    return (
+      <Tooltip title={t("snackbar_install.install_button")}>
+        <IconButton
+          aria-label="install-app"
+          onClick={handleInstallApp}
+          disabled={isInstalled()}
+          sx={{ ml: 1, position: "relative", right: isHome ? "40px" : "0" }}
+        >
+          {isAndroid ? <InstallMobileIcon /> : <InstallDesktopIcon />}
+        </IconButton>
+      </Tooltip>
+    );
+  }
+
+  return null;
 };
 
 export default InstallButton;
