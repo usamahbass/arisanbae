@@ -33,7 +33,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (supported() && !isInstalled) {
+    if (supported() && !isInstalled()) {
       handleInstallApp();
     }
   }, [supported, isInstalled]);
