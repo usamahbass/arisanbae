@@ -1,12 +1,6 @@
 {
   "name": "Arisan Bae",
   "short_name": "ArisanBae",
-  "theme_color": "#5DC3B2",
-  "background_color": "#fff",
-  "display": "standalone",
-  "orientation": "portrait",
-  "scope": "/",
-  "start_url": "/",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
@@ -48,5 +42,10 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#5DC3B2",
+  "orientation": "portrait",
+  "background_color": "#fff"
 }

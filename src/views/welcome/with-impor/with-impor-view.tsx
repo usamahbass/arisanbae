@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Slide } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
 import { DropzoneArea } from "react-mui-dropzone";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { useSlide } from "hooks/useSlide";
+import { arisanField } from "constants/field";
 import ArisanLayout from "layouts";
 import HeaderBack from "layouts/header-back";
 import StatsImpor from "./stats-impor";
@@ -30,8 +32,10 @@ const WithImporView = () => {
   const isSlide = useSlide();
   const { t } = useTranslation();
   const classes = useDropzoneStyle();
+  const { enqueueSnackbar } = useSnackbar();
 
   const [dataImpor, setDataImpor] = useState<any>(null);
+  const [fieldInDataImporExists, setFieldInDataImporExists] = useState(false);
 
   const handleReaderFile = (files: any) => {
     const fileData = files[0];
@@ -47,7 +51,27 @@ const WithImporView = () => {
     };
   };
 
-  if (dataImpor) {
+  const handleCheckDataImpor = (isDataImpor: any) => {
+    const isFieldInDataImporExists = isDataImpor
+      ? Object.entries(
+          isDataImpor?.arisan ? isDataImpor?.arisan : isDataImpor
+        ).filter(([key]) => arisanField.includes(key)).length > 0
+      : false;
+
+    if (isFieldInDataImporExists) {
+      setFieldInDataImporExists(isFieldInDataImporExists);
+    } else {
+      enqueueSnackbar("Data tidak cocok !", { variant: "error", autoHideDuration: 4000 });
+    }
+  };
+
+  useEffect(() => {
+    if (dataImpor) {
+      handleCheckDataImpor(dataImpor);
+    }
+  }, [dataImpor]);
+
+  if (fieldInDataImporExists) {
     return <StatsImpor arisanImpor={dataImpor?.arisan} />;
   }
 

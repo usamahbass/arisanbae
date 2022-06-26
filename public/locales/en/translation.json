@@ -132,5 +132,12 @@
     "stats_see_member": "See Member",
     "stats_start": "Start",
     "stats_close": "Close"
+  },
+  "snackbar_install": {
+    "install": "Install",
+    "install_description": "Installing uses almost no storage and provides a quick way to return to this app",
+    "install_button": "Install App",
+    "success_install": "The application is installed successfully or the instructions for installing are displayed",
+    "failed_install": "User chooses not to install"
   }
 }

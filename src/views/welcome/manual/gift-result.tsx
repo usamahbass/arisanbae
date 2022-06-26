@@ -1,11 +1,10 @@
 import { useContext } from "react";
 import { Slide, Box, Stack, Typography, Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Helmet from "react-helmet";
 import { useSlide } from "hooks/useSlide";
 import { ArisanContext } from "context/context";
-import { changeCurrentRoutes, changePreviousRoutes } from "context/action";
+import { changeCurrentRoutes, changePreviousRoutes, setAuthentication } from "context/action";
 import { changePaymentTerm } from "helper/changePaymentTerm";
 import { ROUTES_NAME } from "constants/routes";
 import { toRupiah } from "helper/toRupiah";
@@ -33,7 +32,8 @@ const GiftResult = () => {
   };
 
   const handleNextPage = () => {
-    dispatch(changeCurrentRoutes(ROUTES_NAME.CREATE_PIN_ADMIN));
+    dispatch(setAuthentication(true));
+    dispatch(changeCurrentRoutes(ROUTES_NAME.HOME));
     dispatch(changePreviousRoutes(state?.currentRoutes));
   };
 
@@ -88,7 +88,6 @@ const GiftResult = () => {
             type="submit"
             color="primary"
             variant="contained"
-            endIcon={<ArrowForwardIcon />}
             onClick={handleNextPage}
             sx={{
               color: "white",
@@ -97,7 +96,7 @@ const GiftResult = () => {
               width: "92%",
             }}
           >
-            {t("gift_result.next_button")}
+            {t("with_import.stats_start")}
           </Button>
         </Box>
       </Slide>

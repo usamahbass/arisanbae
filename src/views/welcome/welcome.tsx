@@ -9,6 +9,7 @@ import {
   IconButton,
   Slide,
 } from "@mui/material";
+import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
 import { useWelcomeStyles } from "./_styles";
 import { getCurrentLanguage } from "helper/getCurrentLanguage";
@@ -22,11 +23,13 @@ import LogoArisan from "assets/png/icon.png";
 import IlustrationWelcome from "assets/svg/welcome.svg";
 import ChooseLanguage from "components/choose-language";
 import ThemeToggle from "components/theme-toggle";
+import InstallButton from "components/install-button";
 
 const WelcomePages = () => {
   const classes = useWelcomeStyles();
   const currentLanguage = getCurrentLanguage();
   const { t } = useTranslation();
+  const { enqueueSnackbar } = useSnackbar();
 
   const { dispatch } = useContext(ArisanContext);
 
@@ -46,6 +49,7 @@ const WelcomePages = () => {
 
             <Stack direction="row" alignItems="center">
               <ThemeToggle />
+              <InstallButton />
 
               <IconButton
                 aria-label="choose-language"

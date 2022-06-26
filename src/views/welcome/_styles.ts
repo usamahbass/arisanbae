@@ -33,7 +33,10 @@ export const useWelcomeStyles = makeStyles({
     fontSize: ".75rem !important",
   },
   captionFooter: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: "1rem !important",
+  },
+  snackBarRoot: {
+    backgroundColor: "#1890FF",
   },
 });
