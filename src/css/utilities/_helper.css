@@ -27,7 +27,7 @@ input[type="number"] {
 .dropzone-title {
   font-size: 1rem !important;
 }
-
+/* 
 .makeStyles-customDrawerPaper-1 {
   background-color: #5dc3b2 !important;
   right: 12px !important;
@@ -46,7 +46,7 @@ input[type="number"] {
   background-color: #5dc3b2 !important;
   color: white !important;
   border: 1px solid white !important;
-}
+} */
 
 @media (max-width: 678px) {
   .custom-vote-button {
