@@ -29,7 +29,6 @@ const WelcomePages = () => {
   const classes = useWelcomeStyles();
   const currentLanguage = getCurrentLanguage();
   const { t } = useTranslation();
-  const { enqueueSnackbar } = useSnackbar();
 
   const { dispatch } = useContext(ArisanContext);
 
@@ -111,18 +110,6 @@ const WelcomePages = () => {
                 {t("welcome.manual_button")}
               </Button>
             </Stack>
-
-            <Box mt="8rem">
-              <Typography className={classes.captionFooter} variant="body2">
-                &copy; 2022&nbsp;
-                <Link
-                  target="_blank"
-                  href="https://github.com/usamahbass/arisanbae"
-                >
-                  arisanbae
-                </Link>
-              </Typography>
-            </Box>
           </Box>
         </Box>
       </Slide>
