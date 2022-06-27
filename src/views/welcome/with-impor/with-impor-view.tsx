@@ -61,7 +61,10 @@ const WithImporView = () => {
     if (isFieldInDataImporExists) {
       setFieldInDataImporExists(isFieldInDataImporExists);
     } else {
-      enqueueSnackbar("Data tidak cocok !", { variant: "error", autoHideDuration: 4000 });
+      enqueueSnackbar("Data tidak cocok !", {
+        variant: "error",
+        autoHideDuration: 4000,
+      });
     }
   };
 
@@ -98,15 +101,6 @@ const WithImporView = () => {
               }
             }}
           />
-
-          <Box
-            textAlign="center"
-            position="absolute"
-            left="190px"
-            bottom="20px"
-          >
-            &copy; arisanbae
-          </Box>
         </Box>
       </Slide>
     </ArisanLayout>
