@@ -1,77 +1,36 @@
 {
-  "name": "arisan",
-  "version": "0.1.0",
+  "name": "arisanbae",
   "private": true,
-  "dependencies": {
-    "@emotion/react": "^11.8.2",
-    "@emotion/styled": "^11.8.1",
-    "@material-ui/core": "^4.12.4",
-    "@mui/icons-material": "^5.5.1",
-    "@mui/lab": "^5.0.0-alpha.78",
-    "@mui/material": "^5.5.0",
-    "@mui/styles": "^5.5.1",
-    "@mui/x-data-grid": "^5.8.0",
-    "@mui/x-date-pickers": "^5.0.0-alpha.2",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.0.0",
-    "@testing-library/user-event": "^13.2.1",
-    "@types/jest": "^27.0.1",
-    "@types/node": "^16.7.13",
-    "@types/react": "^17.0.20",
-    "@types/react-dom": "^17.0.9",
-    "apexcharts": "^3.35.0",
-    "date-fns": "^2.28.0",
-    "i18next": "^21.6.14",
-    "i18next-http-backend": "^1.4.0",
-    "js-file-download": "^0.4.12",
-    "lodash": "^4.17.21",
-    "mobile-device-detect": "^0.4.3",
-    "notistack": "^2.0.5",
-    "react": "^17.0.2",
-    "react-apexcharts": "^1.4.0",
-    "react-code-input": "^3.10.1",
-    "react-confetti": "^6.0.1",
-    "react-dom": "^17.0.2",
-    "react-helmet": "^6.1.0",
-    "react-hook-form": "^7.27.1",
-    "react-i18next": "^11.16.1",
-    "react-mui-dropzone": "^4.0.6",
-    "react-pwa-install": "https://github.com/usamahbass/react-pwa-install#package",
-    "react-router-dom": "^6.2.2",
-    "react-scripts": "5.0.0",
-    "react-text-mask": "^5.4.3",
-    "react-use": "^17.3.2",
-    "text-mask-addons": "^3.8.0",
-    "typescript": "^4.4.2",
-    "web-vitals": "^2.1.0",
-    "workbox-core": "^6.5.3",
-    "workbox-expiration": "^6.5.3",
-    "workbox-precaching": "^6.5.3",
-    "workbox-routing": "^6.5.3",
-    "workbox-strategies": "^6.5.3"
-  },
+  "version": "2.0.0",
+  "type": "module",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "@hookform/resolvers": "^5.9.1",
+    "@tanstack/react-table": "^8.21.2",
+    "canvas-confetti": "^1.9.4",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.4.7",
+    "lucide-react": "^0.475.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.88.0",
+    "tailwind-merge": "^3.0.1",
+    "zod": "^4.6.5"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "@types/canvas-confetti": "^1.9.0",
+    "@types/node": "^22.13.4",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.2",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0"
   }
 }
